@@ -1,6 +1,6 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
-    import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation'; 
 
     // --- Obstacle Class Definition ---
     class Obstacle {
@@ -18,10 +18,10 @@
     // --- Game State and Properties ---
     let characterX = 0;
     let characterY = 0;
-    let characterSusie_X = 0;
-    let characterSusie_Y = 0;
-    let characterRalsei_X = 0;
-    let characterRalsei_Y = 0;
+    let characterX_2 = 0;
+    let characterY_2 = 0;
+    let characterX_3 = 0;
+    let characterY_3 = 0;
 
     let krisZIndex = 0;
     let susieZIndex = 0;
@@ -60,28 +60,31 @@
             windowHeight = window.innerHeight;
 
             // Obstacles that can be added. Uses the object
-            // the y of the obstacle is its z-index
+            // NOTA: Para z-index dinâmico, o y do obstáculo define sua "profundidade" inicial.
             obstacles = [
-                new Obstacle(0, 0, windowWidth, 80),
-                new Obstacle(0, 80, 80, windowHeight), 
-                new Obstacle(windowWidth-80, 80, 80, windowHeight), 
-
-                new Obstacle(80, windowHeight - 80, windowWidth/2 - 240, 80),
-                new Obstacle(windowWidth/2 + 160, windowHeight - 80, windowWidth/2 - 240, 80),
+                new Obstacle(0, 0, windowWidth/2 - 120, 80),
+                new Obstacle(windowWidth/2 + 120, 0, windowWidth/2, 80), // x, y, width, height
+                new Obstacle(0, 80, 80, 250), 
+                new Obstacle(0, 580, 80, 300), 
+                new Obstacle(windowWidth-80, 80, 80, 250),
+                new Obstacle(windowWidth-80, 580, 80, 300), 
+                new Obstacle(0, windowHeight-80, windowWidth, 80),
             ];
 
             characterX = (windowWidth / 2) - (characterSize / 2);
             characterY = 120;
 
+            // Preenche o histórico de posições no início para evitar saltos
+            // Importante: Faça isso APENAS depois de definir characterX e characterY
             for (let i = 0; i < maxHistorySize; i++) {
                 playerPositionHistory.push({ x: characterX, y: characterY, direc: direction });
             }
 
-            characterSusie_X = characterX; // Same position as Kris initially
-            characterSusie_Y = characterY;
+            characterX_2 = characterX; // Inicia na mesma posição do Kris
+            characterY_2 = characterY;
 
-            characterRalsei_X = characterX; // Same position as Kris initially
-            characterRalsei_Y = characterY;
+            characterX_3 = characterX; // Inicia na mesma posição do Kris
+            characterY_3 = characterY;
 
             window.addEventListener('keydown', handleKeyDown);
             window.addEventListener('keyup', handleKeyUp);
@@ -119,19 +122,19 @@
         );
     }
 
-    let krisSpriteUrl = './kris/spr_krisd_dark(0).png';
-    let susieSpriteUrl = './susie/spr_susieu_eye_dark(0).png';
-    let ralseiSpriteUrl = './ralsei/spr_ralseiu(0).png';
+    let krisSpriteUrl = '/kris/spr_krisd_dark(0).png';
+    let susieSpriteUrl = '/susie/spr_susieu_eye_dark(0).png';
+    let ralseiSpriteUrl = '/ralsei/spr_ralseiu(0).png';
 
     // Updates everytime "direction" or "animationFrame" change
     $: {
-        krisSpriteUrl = `./kris/spr_kris${direction}_dark(${animationFrame}).png`;
+        krisSpriteUrl = `/kris/spr_kris${direction}_dark(${animationFrame}).png`;
     }
     $: {
-        susieSpriteUrl = `./susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
+        susieSpriteUrl = `/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
     }
     $: {
-        ralseiSpriteUrl = `./ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
+        ralseiSpriteUrl = `/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
     }
 
     // --- Main Game Loop Update ---
@@ -165,10 +168,14 @@
         characterX = Math.max(0, Math.min(newX, windowWidth - characterSize));
         characterY = Math.max(0, Math.min(newY, windowHeight - characterSize));
 
-        if (characterY + characterSize >= windowHeight) {
-            cancelAnimationFrame(animationFrameId); // Para o loop de animação
-            goto('/room'); // Redireciona para a rota /room
-            return; // Sai da função para evitar mais atualizações de posição
+        if (characterY  <= 0) {
+            cancelAnimationFrame(animationFrameId);
+
+            // Exemplo de como você pode tentar construir a URL de forma mais "segura"
+            // Isso é útil se você tem um basePath, mas '/room' já é absoluto.
+            const roomUrl = new URL('/', window.location.origin).pathname;
+            goto('/');
+            return;
         }
 
         // --- Update Z-Index for Kris (Player) ---
@@ -188,20 +195,20 @@
         const susieDelayIndex = Math.max(0, playerPositionHistory.length - Math.floor(maxHistorySize / 2) - 1);
         if (playerPositionHistory.length > 0) {
             const susiePosition = playerPositionHistory[susieDelayIndex];
-            characterSusie_X = susiePosition.x;
-            characterSusie_Y = susiePosition.y;
+            characterX_2 = susiePosition.x;
+            characterY_2 = susiePosition.y;
             susieDirection = susiePosition.direc;
-            susieZIndex = characterSusie_Y + characterSize; // Z-index based on Susie's Y
+            susieZIndex = characterY_2 + characterSize; // Z-index based on Susie's Y
         }
 
         // --- Update Ralsei's Position and Direction ---
         const ralseiDelayIndex = Math.max(0, playerPositionHistory.length - maxHistorySize - 1);
         if (playerPositionHistory.length > 0) { 
             const ralseiPosition = playerPositionHistory[ralseiDelayIndex];
-            characterRalsei_X = ralseiPosition.x;
-            characterRalsei_Y = ralseiPosition.y;
+            characterX_3 = ralseiPosition.x;
+            characterY_3 = ralseiPosition.y;
             ralseiDirection = ralseiPosition.direc;
-            ralseiZIndex = characterRalsei_Y + characterSize; // Z-index based on Ralsei's Y
+            ralseiZIndex = characterY_3 + characterSize; // Z-index based on Ralsei's Y
         }
 
         // --- Update Obstacle Z-Indices ---
@@ -249,10 +256,10 @@
 </div>
 
 <div class="character_susie"
-    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterSusie_X - 35}px; --susieY: {characterSusie_Y - 115}px; z-index: {susieZIndex};">
+    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterX_2 - 35}px; --susieY: {characterY_2 - 115}px; z-index: {susieZIndex};">
 </div>
 <div class="character_ralsei"
-    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterRalsei_X - 35}px; --ralseiY: {characterRalsei_Y - 105}px; z-index: {ralseiZIndex};">
+    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterX_3 - 35}px; --ralseiY: {characterY_3 - 105}px; z-index: {ralseiZIndex};">
 </div>
 
 {#each obstacles as obstacle (obstacle.x + '-' + obstacle.y)} <div
@@ -299,7 +306,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background-image: url('./images/heart.png');
+        background-image: url('/images/heart.png');
         background-size: contain;
         background-repeat: no-repeat;
         image-rendering: pixelated;
@@ -310,7 +317,7 @@
         position: absolute;
         width: 90px;
         height: 180px;
-        background-image: url('./kris/spr_krisd_dark(0).png');
+        background-image: url('/kris/spr_krisd_dark(0).png');
         background-size: contain;
         background-repeat: no-repeat;
         image-rendering: pixelated;
@@ -321,7 +328,7 @@
         position: absolute;
         width: 120px;
         height: 240px;
-        background-image: url('./susie/spr_susied_eye_dark(0).png');
+        background-image: url('/susie/spr_susied_eye_dark(0).png');
         transform: translate(var(--susieX), var(--susieY));
         background-size: contain;
         background-repeat: no-repeat;
@@ -333,7 +340,7 @@
         position: absolute;
         width: 110px;
         height: 220px;
-        background-image: url('./ralsei/spr_ralseid(0).png');
+        background-image: url('/ralsei/spr_ralseid(0).png');
         transform: translate(var(--ralseiX), var(--ralseiY));
         background-size: contain;
         background-repeat: no-repeat;
