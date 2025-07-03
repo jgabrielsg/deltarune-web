@@ -42,19 +42,19 @@
   const animationSpeed = 16; 
 
 
-  let krisSpriteUrl = '/kris/spr_krisd_dark(0).png';
-  let susieSpriteUrl = '/susie/spr_susieu_dark(0).png'; 
-  let ralseiSpriteUrl = '/ralsei/spr_ralseiu(0).png'; 
+  let krisSpriteUrl = './kris/spr_krisd_dark(0).png';
+  let susieSpriteUrl = './susie/spr_susieu_dark(0).png'; 
+  let ralseiSpriteUrl = './ralsei/spr_ralseiu(0).png'; 
   
   // Updates everytime "direction" or "animationFrame" change
   $: {
-    krisSpriteUrl = `/kris/spr_kris${direction}_dark(${animationFrame}).png`;
+    krisSpriteUrl = `./kris/spr_kris${direction}_dark(${animationFrame}).png`;
   }
   $: {
-    susieSpriteUrl = `/susie/spr_susie${direction}_eye_dark(${animationFrame}).png`;
+    susieSpriteUrl = `./susie/spr_susie${direction}_eye_dark(${animationFrame}).png`;
   }
   $: {
-    ralseiSpriteUrl = `/ralsei/spr_ralsei${direction}(${animationFrame}).png`;
+    ralseiSpriteUrl = `./ralsei/spr_ralsei${direction}(${animationFrame}).png`;
   }
 
   onMount(() => {
@@ -261,7 +261,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('/images/heart.png');
+    background-image: url('./images/heart.png');
     background-size: contain;
     background-repeat: no-repeat;
     image-rendering: pixelated;
@@ -272,7 +272,7 @@
     position: absolute;
     width: 90px;
     height: 180px;
-    background-image: url('/kris/spr_krisd_dark(0).png');
+    background-image: url('./kris/spr_krisd_dark(0).png');
     background-size: contain;
     background-repeat: no-repeat;
     image-rendering: pixelated;
@@ -283,7 +283,7 @@
     position: absolute;
     width: 110px;
     height: 220px;
-    background-image: url('/susie/spr_susied_eye_dark(0).png');
+    background-image: url('./susie/spr_susied_eye_dark(0).png');
     transform: translate(var(--susieX), var(--susieY));
     background-size: contain;
     background-repeat: no-repeat;
@@ -295,7 +295,7 @@
     position: absolute;
     width: 90px;
     height: 180px;
-    background-image: url('/ralsei/spr_ralseid(0).png');
+    background-image: url('./ralsei/spr_ralseid(0).png');
     transform: translate(var(--ralseiX), var(--ralseiY));
     background-size: contain;
     background-repeat: no-repeat;
