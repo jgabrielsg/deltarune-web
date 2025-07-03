@@ -16,6 +16,11 @@
   // --- Game State and Properties ---
   let characterX = 0;
   let characterY = 0;
+  let characterX_2 = 0;
+  let characterY_2 = 0;
+  let characterX_3 = 0;
+  let characterY_3 = 0;
+
   const characterSize = 30;
   const speed = 3;
   const runSpeed = 6;
@@ -30,16 +35,26 @@
   let animationFrameId;
 
   // --- Animation ---
-  let direction = 'u';  // Initial direction
+  let direction = 'd';  // Initial direction
   let animationFrame = 0;  // which sprite we are from (0-3)
   let isMoving = false;                              
   let animationTimer = 0;
   const animationSpeed = 16; 
-  let krisSpriteUrl = '/kris/spr_krisd_dark(0).png'; 
+
+
+  let krisSpriteUrl = '/kris/spr_krisd_dark(0).png';
+  let susieSpriteUrl = '/susie/spr_susieu_dark(0).png'; 
+  let ralseiSpriteUrl = '/ralsei/spr_ralseiu(0).png'; 
   
   // Updates everytime "direction" or "animationFrame" change
   $: {
     krisSpriteUrl = `/kris/spr_kris${direction}_dark(${animationFrame}).png`;
+  }
+  $: {
+    susieSpriteUrl = `/susie/spr_susie${direction}_eye_dark(${animationFrame}).png`;
+  }
+  $: {
+    ralseiSpriteUrl = `/ralsei/spr_ralsei${direction}(${animationFrame}).png`;
   }
 
   onMount(() => {
@@ -55,7 +70,14 @@
       ];
 
       characterX = (windowWidth / 2) - (characterSize / 2);
-      characterY = windowHeight - characterSize * 3;
+      characterY = 0
+
+      characterX_2 = (windowWidth / 2) - (characterSize / 2);
+      characterY_2 = 0
+
+      characterX_3 = (windowWidth / 2) - (characterSize / 2);
+      characterY_3 = 0
+
       window.addEventListener('keydown', handleKeyDown);
       window.addEventListener('keyup', handleKeyUp);
       startAnimation();
@@ -92,6 +114,9 @@
     );
   }
 
+  // Player positions (from where susie and ralsei will follow you)
+  let playerPositionHistory = [];
+
   function updateCharacterPosition() {
     const currentSpeed = pressedKeys.Shift ? runSpeed : speed; // Checks if we are running
 
@@ -121,6 +146,30 @@
     }
     characterX = Math.max(0, Math.min(newX, windowWidth - characterSize));
     characterY = Math.max(0, Math.min(newY, windowHeight - characterSize));
+
+    // Get the player positions and puts it in an array
+    const lastRecordedPosition = playerPositionHistory[playerPositionHistory.length - 1];
+    if (!lastRecordedPosition || lastRecordedPosition.x !== characterX || lastRecordedPosition.y !== characterY) {
+        playerPositionHistory.push({ x: characterX, y: characterY });
+        console.log(playerPositionHistory);
+    }
+
+    const maxHistorySize = 80; // how many frames will ralsei be away from Kris. Susie will be x/2
+    if (playerPositionHistory.length > maxHistorySize) {
+        playerPositionHistory.shift(); // take the last element out
+    }
+
+    if (playerPositionHistory.length > maxHistorySize/2) {
+        const delayedPosition2 = playerPositionHistory[maxHistorySize/2];
+        characterX_2 = delayedPosition2.x;
+        characterY_2 = delayedPosition2.y;
+    }
+
+    if (playerPositionHistory.length > 0) {
+        const delayedPosition3 = playerPositionHistory[0];
+        characterX_3 = delayedPosition3.x;
+        characterY_3 = delayedPosition3.y;
+    }
   }
 
   // --- Character animations ---
@@ -169,9 +218,16 @@
   ></div>
 {/each}
 
-<div class="character" style="--characterX: {characterX}px; --characterY: {characterY}px;">
+<div class="character" style="--krisX: {characterX}px; --krisY: {characterY}px;">
   <div class="character_kris" style="background-image: url('{krisSpriteUrl}');"></div>
   <div class="character_heart"></div>
+</div>
+
+<div class="character_susie" 
+    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterX_2 - 35}px; --susieY: {characterY_2 - 100}px;">
+</div>
+<div class="character_ralsei"
+    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterX_3 - 30}px; --ralseiY: {characterY_3 - 70}px;">
 </div>
 
 <style>
@@ -194,7 +250,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    transform: translate(var(--characterX), var(--characterY));
+    transform: translate(var(--krisX), var(--krisY));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,7 +272,31 @@
     position: absolute;
     width: 90px;
     height: 180px;
-    background-image: url('/kris/spr_krisu_dark(0).png');
+    background-image: url('/kris/spr_krisd_dark(0).png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    z-index: 2;
+  }
+
+  .character_susie {
+    position: absolute;
+    width: 110px;
+    height: 220px;
+    background-image: url('/susie/spr_susied_eye_dark(0).png');
+    transform: translate(var(--susieX), var(--susieY));
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    z-index: 2;
+  }
+
+  .character_ralsei {
+    position: absolute;
+    width: 90px;
+    height: 180px;
+    background-image: url('/ralsei/spr_ralseid(0).png');
+    transform: translate(var(--ralseiX), var(--ralseiY));
     background-size: contain;
     background-repeat: no-repeat;
     image-rendering: pixelated;
