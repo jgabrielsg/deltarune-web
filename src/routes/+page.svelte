@@ -36,26 +36,13 @@
 
   // --- Animation ---
   let direction = 'd';  // Initial direction
+  let susieDirection = 'd';
+  let ralseiDirection = 'd';
+
   let animationFrame = 0;  // which sprite we are from (0-3)
   let isMoving = false;                              
   let animationTimer = 0;
   const animationSpeed = 16; 
-
-
-  let krisSpriteUrl = './kris/spr_krisd_dark(0).png';
-  let susieSpriteUrl = './susie/spr_susieu_dark(0).png'; 
-  let ralseiSpriteUrl = './ralsei/spr_ralseiu(0).png'; 
-  
-  // Updates everytime "direction" or "animationFrame" change
-  $: {
-    krisSpriteUrl = `./kris/spr_kris${direction}_dark(${animationFrame}).png`;
-  }
-  $: {
-    susieSpriteUrl = `./susie/spr_susie${direction}_eye_dark(${animationFrame}).png`;
-  }
-  $: {
-    ralseiSpriteUrl = `./ralsei/spr_ralsei${direction}(${animationFrame}).png`;
-  }
 
   onMount(() => {
     if (typeof window !== 'undefined') {
@@ -71,6 +58,10 @@
 
       characterX = (windowWidth / 2) - (characterSize / 2);
       characterY = 0
+
+      for (let i = 0; i < maxHistorySize; i++) {
+          playerPositionHistory.push({ x: characterX, y: characterY, direc: direction });
+      }
 
       characterX_2 = (windowWidth / 2) - (characterSize / 2);
       characterY_2 = 0
@@ -114,8 +105,25 @@
     );
   }
 
+  let krisSpriteUrl = './kris/spr_krisd_dark(0).png';
+  let susieSpriteUrl = './susie/spr_susieu_dark(0).png'; 
+  let ralseiSpriteUrl = './ralsei/spr_ralseiu(0).png'; 
+
+  // Updates everytime "direction" or "animationFrame" change
+  $: {
+    krisSpriteUrl = `./kris/spr_kris${direction}_dark(${animationFrame}).png`;
+  }
+  $: {
+    susieSpriteUrl = `./susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
+  }
+  $: {
+    ralseiSpriteUrl = `./ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
+  }
+
   // Player positions (from where susie and ralsei will follow you)
   let playerPositionHistory = [];
+  let playerFacingHistory = [];
+  const maxHistorySize = 80; // how many frames will ralsei be away from Kris. Susie will be x/2
 
   function updateCharacterPosition() {
     const currentSpeed = pressedKeys.Shift ? runSpeed : speed; // Checks if we are running
@@ -150,25 +158,26 @@
     // Get the player positions and puts it in an array
     const lastRecordedPosition = playerPositionHistory[playerPositionHistory.length - 1];
     if (!lastRecordedPosition || lastRecordedPosition.x !== characterX || lastRecordedPosition.y !== characterY) {
-        playerPositionHistory.push({ x: characterX, y: characterY });
+        playerPositionHistory.push({ x: characterX, y: characterY, direc: direction });
         console.log(playerPositionHistory);
     }
 
-    const maxHistorySize = 80; // how many frames will ralsei be away from Kris. Susie will be x/2
     if (playerPositionHistory.length > maxHistorySize) {
         playerPositionHistory.shift(); // take the last element out
     }
 
     if (playerPositionHistory.length > maxHistorySize/2) {
-        const delayedPosition2 = playerPositionHistory[maxHistorySize/2];
-        characterX_2 = delayedPosition2.x;
-        characterY_2 = delayedPosition2.y;
+        const susiePosition = playerPositionHistory[maxHistorySize/2];
+        characterX_2 = susiePosition.x;
+        characterY_2 = susiePosition.y;
+        susieDirection = susiePosition.direc;
     }
 
     if (playerPositionHistory.length > 0) {
-        const delayedPosition3 = playerPositionHistory[0];
-        characterX_3 = delayedPosition3.x;
-        characterY_3 = delayedPosition3.y;
+        const ralseiPosition = playerPositionHistory[0];
+        characterX_3 = ralseiPosition.x;
+        characterY_3 = ralseiPosition.y;
+        ralseiDirection = ralseiPosition.direc;
     }
   }
 
@@ -224,10 +233,10 @@
 </div>
 
 <div class="character_susie" 
-    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterX_2 - 35}px; --susieY: {characterY_2 - 100}px;">
+    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterX_2 - 35}px; --susieY: {characterY_2 - 115}px;">
 </div>
 <div class="character_ralsei"
-    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterX_3 - 30}px; --ralseiY: {characterY_3 - 70}px;">
+    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterX_3 - 35}px; --ralseiY: {characterY_3 - 105}px;">
 </div>
 
 <style>
@@ -281,8 +290,8 @@
 
   .character_susie {
     position: absolute;
-    width: 110px;
-    height: 220px;
+    width: 120px;
+    height: 240px;
     background-image: url('./susie/spr_susied_eye_dark(0).png');
     transform: translate(var(--susieX), var(--susieY));
     background-size: contain;
@@ -293,8 +302,8 @@
 
   .character_ralsei {
     position: absolute;
-    width: 90px;
-    height: 180px;
+    width: 110px;
+    height: 220px;
     background-image: url('./ralsei/spr_ralseid(0).png');
     transform: translate(var(--ralseiX), var(--ralseiY));
     background-size: contain;
