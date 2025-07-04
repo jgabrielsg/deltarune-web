@@ -88,12 +88,12 @@
                 new Obstacle(windowWidth / 2 + 160, windowHeight - 80, windowWidth / 2 - 240, 80),
 
                 // Make sure your paths are absolute for all assets, not relative
-                new Obstacle(windowWidth / 2 - 40, windowHeight / 2 - 20, 120, 80, '/images/spr_classdesk(0).png'), // table
+                new Obstacle(windowWidth / 2 - 40, windowHeight / 2 - 20, 120, 80, './images/spr_classdesk(0).png'), // table
             ];
 
             interactionBoxes = [
                 // Make sure your paths are absolute for all assets, not relative
-                new InteractionBox(windowWidth / 2 - 80, windowHeight / 2 - 60, 200, 160, '/gifs/table.gif'), // table
+                new InteractionBox(windowWidth / 2 - 80, windowHeight / 2 - 60, 200, 160, './gifs/table.gif'), // table
             ];
 
             characterX = (windowWidth / 2) - (characterSize / 2);
@@ -174,18 +174,18 @@
     }
 
     // --- Ensure absolute paths for all sprites ---
-    let krisSpriteUrl = '/kris/spr_krisd_dark(0).png';
-    let susieSpriteUrl = '/susie/spr_susieu_eye_dark(0).png';
-    let ralseiSpriteUrl = '/ralsei/spr_ralseiu(0).png';
+    let krisSpriteUrl = './kris/spr_krisd_dark(0).png';
+    let susieSpriteUrl = './susie/spr_susieu_eye_dark(0).png';
+    let ralseiSpriteUrl = './ralsei/spr_ralseiu(0).png';
 
     $: {
-        krisSpriteUrl = `/kris/spr_kris${direction}_dark(${animationFrame}).png`;
+        krisSpriteUrl = `./kris/spr_kris${direction}_dark(${animationFrame}).png`;
     }
     $: {
-        susieSpriteUrl = `/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
+        susieSpriteUrl = `./susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
     }
     $: {
-        ralseiSpriteUrl = `/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
+        ralseiSpriteUrl = `./ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
     }
 
     function updateCharacterPosition() {
@@ -429,7 +429,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background-image: url('/images/heart.png');
+        background-image: url('./images/heart.png');
         background-size: contain;
         background-repeat: no-repeat;
         image-rendering: pixelated;
