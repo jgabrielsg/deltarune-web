@@ -1,0 +1,77 @@
+.obstacle {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+}
+
+.interactionBox {
+    position: absolute;
+}
+
+.gif-overlay {
+    position: fixed;
+    top: 70%;
+    left: 10%;
+    width: 80%;
+    height: 30%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+    z-index: 10000;
+}
+
+.character {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(var(--krisX), var(--krisY));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.character_heart {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/heart.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    z-index: 1;
+}
+
+.character_kris {
+    position: absolute;
+    width: 90px;
+    height: 180px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    z-index: 2;
+}
+
+.character_susie {
+    position: absolute;
+    width: 120px;
+    height: 240px;
+    transform: translate(var(--susieX), var(--susieY));
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}
+
+.character_ralsei {
+    position: absolute;
+    width: 110px;
+    height: 220px;
+    transform: translate(var(--ralseiX), var(--ralseiY));
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}
