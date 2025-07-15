@@ -47,14 +47,14 @@
 
             // Pass goto as a callback for room transitions
             game.startAnimation(boundaryHit => {
-                game.cancelAnimation(); // Stop animation before navigating
+                game.cancelAnimation();
                 if (boundaryHit === 'left') {
                     game.initializeCharacterPosition(windowWidth - 150, 450);
-                    goto('/main_room'); // Go to '/' (main room) when hitting top
+                    goto('/main_room');
                 };
                 if (boundaryHit === 'right') {
                     game.initializeCharacterPosition(150, 450);
-                    goto('/forest_1'); // Go to '/' (main room) when hitting top
+                    goto('/forest_1'); 
                 };
             });
         }
@@ -92,10 +92,10 @@
         class="obstacle"
         style="
             top: {obstacle.y}px; left: {obstacle.x}px;
+            z-index: {Math.floor(obstacle.y)};
             width: {obstacle.width}px; height: {obstacle.height}px;
-            background-image: {obstacle.sprite ? `url(${obstacle.sprite})` : 'none'};
+            background-image: url('{obstacle.sprite}');
             background-color: {obstacle.sprite ? 'transparent' : 'firebrick'};
-            z-index: {obstacle.zIndex};
         "
     ></div>
 {/each}

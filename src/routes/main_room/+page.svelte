@@ -43,9 +43,6 @@
                 new Obstacle(0, windowHeight - 80, windowWidth, 80),
             ]);
 
-            // Adjust initial position for this room if needed
-            //game.initializeCharacterPosition((windowWidth / 2) - (characterSize / 2), 120); // Start at bottom for transition
-
             window.addEventListener('keydown', game.handleKeyDown);
             window.addEventListener('keyup', game.handleKeyUp);
 
@@ -100,10 +97,10 @@
         class="obstacle"
         style="
             top: {obstacle.y}px; left: {obstacle.x}px;
+            z-index: {Math.floor(obstacle.y)};
             width: {obstacle.width}px; height: {obstacle.height}px;
-            background-image: {obstacle.sprite ? `url(${obstacle.sprite})` : 'none'};
+            background-image: url('{obstacle.sprite}');
             background-color: {obstacle.sprite ? 'transparent' : 'firebrick'};
-            z-index: {obstacle.zIndex};
         "
     ></div>
 {/each}

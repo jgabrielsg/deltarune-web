@@ -54,11 +54,12 @@
             window.addEventListener('keydown', game.handleKeyDown);
             window.addEventListener('keyup', game.handleKeyUp);
 
+            // Pass goto as a callback for room transitions
             game.startAnimation(boundaryHit => {
                 game.cancelAnimation(); // Stop animation before navigating
                 if (boundaryHit === 'bottom') {
                     game.initializeCharacterPosition((windowWidth / 2) - (characterSize / 2), 120);
-                    goto('/main_room'); // Go to '/room' when hitting bottom
+                    goto('/main_room');
                 }
             });
         }
@@ -96,10 +97,10 @@
         class="obstacle"
         style="
             top: {obstacle.y}px; left: {obstacle.x}px;
+            z-index: {Math.floor(obstacle.y)};
             width: {obstacle.width}px; height: {obstacle.height}px;
             background-image: url('{obstacle.sprite}');
             background-color: {obstacle.sprite ? 'transparent' : 'firebrick'};
-            z-index: {obstacle.zIndex};
         "
     ></div>
 {/each}

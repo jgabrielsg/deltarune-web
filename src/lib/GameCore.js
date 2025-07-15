@@ -7,7 +7,6 @@ export class Obstacle {
         this.height = height;
         this.sprite = sprite;
         this.bounds = { x, y, width, height };
-        this.zIndex = 0;
     }
 }
 
@@ -278,12 +277,8 @@ export const game = {
             gameState.characterRalsei_Y = ralseiPosition.y;
             gameState.ralseiDirection = ralseiPosition.direc;
             gameState.ralseiZIndex = gameState.characterRalsei_Y + gameState.characterSize;
-        }
-
-        gameState.obstacles = gameState.obstacles.map(obstacle => {
-            obstacle.zIndex = obstacle.y;
-            return obstacle;
-        });
+        };
+        
         notifySubscribers();
     },
 
