@@ -114,18 +114,18 @@
                 new Obstacle(windowWidth / 2 + 44, windowHeight - 140, windowWidth / 2 - 64, 150),
 
                 // objects with interaction
-                new Obstacle(windowWidth/2      -60, windowHeight / 2 - 20, 120, 80, './images/spr_classdesk(0).png'),
-                new Obstacle(windowWidth/2 - 256-60, 128, 120, 80, './images/spr_sign.png'),
-                new Obstacle(windowWidth/2      -60, 128, 120, 80, './images/spr_sign.png'),
-                new Obstacle(windowWidth/2 + 256-60, 128, 120, 80, './images/spr_sign.png'),
+                new Obstacle(windowWidth/2      -60, windowHeight / 2 - 20, 120, 80, '/images/spr_classdesk(0).png'),
+                new Obstacle(windowWidth/2 - 256-60, 128, 120, 80, '/images/spr_sign.png'),
+                new Obstacle(windowWidth/2      -60, 128, 120, 80, '/images/spr_sign.png'),
+                new Obstacle(windowWidth/2 + 256-60, 128, 120, 80, '/images/spr_sign.png'),
             ]);
 
             game.setInteractionBoxes([
-                new InteractionBox(windowWidth / 2 - 80, windowHeight / 2 - 60, 200, 210, './gifs/table.gif'),
+                new InteractionBox(windowWidth / 2 - 80, windowHeight / 2 - 60, 200, 210, '/gifs/table.gif'),
 
-                new InteractionBox(windowWidth/2 - 256-120, 128, 240, 160, './gifs/table.gif'),
-                new InteractionBox(windowWidth/2      -120, 128, 240, 160, './gifs/table.gif'),
-                new InteractionBox(windowWidth/2 + 256-120, 128, 240, 160, './gifs/table.gif'),
+                new InteractionBox(windowWidth/2 - 256-120, 128, 240, 160, '/gifs/table.gif'),
+                new InteractionBox(windowWidth/2      -120, 128, 240, 160, '/gifs/table.gif'),
+                new InteractionBox(windowWidth/2 + 256-120, 128, 240, 160, '/gifs/table.gif'),
             ]);
 
             game.setTileMap(roomTileMap); 
@@ -154,9 +154,9 @@
     });
 
     // Reactive declarations for sprite URLs based on shared state
-    $: krisSpriteUrl = `./kris/spr_kris${direction}_dark(${animationFrame}).png`;
-    $: susieSpriteUrl = `./susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
-    $: ralseiSpriteUrl = `./ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
+    $: krisSpriteUrl = `/images/kris/spr_kris${direction}_dark(${animationFrame}).png`;
+    $: susieSpriteUrl = `/images/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
+    $: ralseiSpriteUrl = `/images/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
 </script>
 
 

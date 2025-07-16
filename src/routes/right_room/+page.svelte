@@ -147,9 +147,9 @@
     });
 
     // Reactive declarations for sprite URLs based on shared state
-    $: krisSpriteUrl = `/kris/spr_kris${direction}_dark(${animationFrame}).png`;
-    $: susieSpriteUrl = `/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
-    $: ralseiSpriteUrl = `/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
+    $: krisSpriteUrl = `/images/kris/spr_kris${direction}_dark(${animationFrame}).png`;
+    $: susieSpriteUrl = `/images/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
+    $: ralseiSpriteUrl = `/images/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
 </script>
 
 <div class="tile-container">
