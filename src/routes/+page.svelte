@@ -36,67 +36,96 @@
     });
 
     const tileset = {
-        0: '/images/tiles/ruinsLight.png',
-        1: '/images/tiles/ruinsDark.png',
-        2: '/images/tiles/ruinsTL.png',
-        3: '/images/tiles/ruinsTR.png',
-        4: '/images/tiles/ruinsDL.png',
-        5: '/images/tiles/ruinsDR.png',
+        // Floor
+        90: '/images/tiles/ruinsLight.png',
+        91: '/images/tiles/ruinsDark.png',
+        92: '/images/tiles/ruinsTL.png',
+        93: '/images/tiles/ruinsTR.png',
+        94: '/images/tiles/ruinsDL.png',
+        95: '/images/tiles/ruinsDR.png',
+        
+        99: '/images/tiles/BLACK.png',
 
+        // Main wall
         10: '/images/tiles/ruinsWallD.png',
         11: '/images/tiles/ruinsWall.png',
         12: '/images/tiles/ruinsWallT.png',
-        13: '/images/tiles/ruinsWallTLCorner.png',
-        14: '/images/tiles/ruinsWallL.png',
-        15: '/images/tiles/ruinsWallTRCorner.png',
-        16: '/images/tiles/ruinsWallR.png',
-        17: '/images/tiles/ruinsWallDLCorner.png',
-        18: '/images/tiles/ruinsWallDown.png',
-        19: '/images/tiles/ruinsWallDRCorner.png',
 
-        20: '/images/tiles/ruinsWallTLCornerIn.png',
-        21: '/images/tiles/ruinsWallTRCornerIn.png',
+        // Main wall (corner)
+        13: '/images/tiles/ruinsWallDC.png',
+        14: '/images/tiles/ruinsWallC.png',
+        15: '/images/tiles/ruinsWallTC.png',
+    
+        16: '/images/tiles/ruinsWallDC_2.png',
+        17: '/images/tiles/ruinsWallC_2.png',
+        18: '/images/tiles/ruinsWallTC_2.png',
 
-        99: '/images/tiles/BLACK.png',
+        // Side walls
+        20: '/images/tiles/ruinsWallL.png',
+        21: '/images/tiles/ruinsWallR.png',
+        22: '/images/tiles/ruinsWallDOWN.png',
+
+        // Corners walls
+        30: '/images/tiles/ruinsWallTL.png',
+        31: '/images/tiles/ruinsWallTR.png',
+        32: '/images/tiles/ruinsWallDL.png',
+        33: '/images/tiles/ruinsWallDR.png',
+
+        34: '/images/tiles/ruinsWallTLIn.png',
+        35: '/images/tiles/ruinsWallTRIn.png',
+        36: '/images/tiles/ruinsWallDLIn.png',
+        37: '/images/tiles/ruinsWallDRIn.png',
+
+        38: '/images/tiles/ruinsWallDLC.png',
+        39: '/images/tiles/ruinsWallDRC.png',
     };
 
     // 24x14 matrix of tilesets. Each number is an id for an image
-    const roomTileMap = [               //12 13
-        [13, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 15], // 1
-        [14, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 16],
-        [14, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 16],
-        [14, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 16],
-        [14, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 16],
-        [14, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 16], 
-        [14, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 16], 
-        [14, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 16], 
-        [14, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 16], 
-        [14, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 16], 
-        [14, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1, 16], 
-        [14, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 16],
-        [17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 21, 0, 0, 20, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19],
-        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 16, 0, 0, 14, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], // 14
+    const roomTileMap = [                           //12 13
+        [30, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 31], // 1
+        [20, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 21],
+        [20, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 21],
+        [20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 21],
+        [20, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 21],
+        [20, 91, 92, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 93, 91, 21], 
+        [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 91, 21], // 7
+        [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 91, 21], // 8
+        [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 91, 21], 
+        [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 91, 21], 
+        [20, 91, 94, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 95, 91, 21], 
+        [20, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 90, 90, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 21],
+        [36, 22, 22, 22, 22, 22, 22, 22, 22, 22, 35, 90, 90, 34, 22, 22, 22, 22, 22, 22, 22, 22, 22, 37],
+        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 20, 90, 90, 21, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], // 14
     ];
 
     onMount(() => {
         if (typeof window !== 'undefined') {
-            const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
+            const windowWidth = 1536;
+            const windowHeight = 864;
 
             game.setWindowDimensions(windowWidth, windowHeight);
             //console.log(windowWidth, windowHeight); // 1536, 864
 
             game.setObstacles([
-                new Obstacle(0, 0, windowWidth, 194),
-                new Obstacle(0, 80, 80, windowHeight),
-                new Obstacle(windowWidth - 80, 80, 80, windowHeight),
-                new Obstacle(80, windowHeight - 80, windowWidth / 2 - 240, 80),
-                new Obstacle(windowWidth / 2 + 160, windowHeight - 80, windowWidth / 2 - 240, 80),
-                new Obstacle(windowWidth / 2 - 40, windowHeight / 2 - 20, 120, 80, './images/spr_classdesk(0).png'),
+                new Obstacle(0, 0, windowWidth, 226), // -30 height to get closest to the wall
+                new Obstacle(0, 1, 96, windowHeight),
+                new Obstacle(windowWidth - 96, 1, 96, windowHeight),
+                new Obstacle(0, windowHeight - 140, windowWidth / 2 - 44, 150), // + 12 top so we don't touch the down wall
+                new Obstacle(windowWidth / 2 + 44, windowHeight - 140, windowWidth / 2 - 64, 150),
+
+                // objects with interaction
+                new Obstacle(windowWidth/2      -60, windowHeight / 2 - 20, 120, 80, './images/spr_classdesk(0).png'),
+                new Obstacle(windowWidth/2 - 256-60, 128, 120, 80, './images/spr_sign.png'),
+                new Obstacle(windowWidth/2      -60, 128, 120, 80, './images/spr_sign.png'),
+                new Obstacle(windowWidth/2 + 256-60, 128, 120, 80, './images/spr_sign.png'),
             ]);
 
             game.setInteractionBoxes([
-                new InteractionBox(windowWidth / 2 - 80, windowHeight / 2 - 60, 200, 160, './gifs/table.gif'),
+                new InteractionBox(windowWidth / 2 - 80, windowHeight / 2 - 60, 200, 210, './gifs/table.gif'),
+
+                new InteractionBox(windowWidth/2 - 256-120, 128, 240, 160, './gifs/table.gif'),
+                new InteractionBox(windowWidth/2      -120, 128, 240, 160, './gifs/table.gif'),
+                new InteractionBox(windowWidth/2 + 256-120, 128, 240, 160, './gifs/table.gif'),
             ]);
 
             game.setTileMap(roomTileMap); 
@@ -148,16 +177,17 @@
     {/each}
 </div>
 
-<div class="character" style="--krisX: {characterX}px; --krisY: {characterY - 25}px; z-index: {krisZIndex};">
+
+<div class="character" style="--krisX: {characterX }px; --krisY: {characterY - 25}px; z-index: {krisZIndex};">
     <div class="character_kris" style="background-image: url('{krisSpriteUrl}');"></div>
     <div class="character_heart"></div>
 </div>
 
 <div class="character_susie"
-    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterSusie_X - 35}px; --susieY: {characterSusie_Y - 140}px; z-index: {susieZIndex};">
+    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterSusie_X - 45}px; --susieY: {characterSusie_Y - 140}px; z-index: {susieZIndex};">
 </div>
 <div class="character_ralsei"
-    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterRalsei_X - 35}px; --ralseiY: {characterRalsei_Y - 130}px; z-index: {ralseiZIndex};">
+    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterRalsei_X - 45}px; --ralseiY: {characterRalsei_Y - 130}px; z-index: {ralseiZIndex};">
 </div>
 
 {#each obstacles as obstacle (obstacle.x + '-' + obstacle.y)}
@@ -169,6 +199,7 @@
             width: {obstacle.width}px; height: {obstacle.height}px;
             background-image: url('{obstacle.sprite}');
             background-color: {obstacle.sprite ? 'transparent' : 'firebrick'};
+            opacity: {obstacle.sprite ? '1' : '0.2'}
         "
     ></div>
 {/each}
