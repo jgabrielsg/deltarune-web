@@ -10,7 +10,12 @@
         characterSize,
         direction, susieDirection, ralseiDirection,
         animationFrame,
-        obstacles
+        obstacles, interactionBoxes,
+        showInteractionGif, currentInteractionGif,
+        playerInInteractionZone, // Keep this for potential UI hints
+        gamePaused, // Keep this for potential UI hints
+        tileSize, 
+        tileMap 
     } = game.state;
 
     // Subscribe to game state changes
@@ -21,9 +26,41 @@
             characterSize,
             direction, susieDirection, ralseiDirection,
             animationFrame,
-            obstacles
+            obstacles, interactionBoxes,
+            showInteractionGif, currentInteractionGif,
+            playerInInteractionZone,
+            gamePaused,
+            tileSize,
+            tileMap
         } = newState);
     });
+
+    const tileset = {
+        0: '/images/tiles/ruinsLight.png',
+        1: '/images/tiles/ruinsDark.png',
+        2: '/images/tiles/ruinsTL.png',
+        3: '/images/tiles/ruinsTR.png',
+        4: '/images/tiles/ruinsDL.png',
+        5: '/images/tiles/ruinsDR.png',
+    };
+
+    // 24x14 matrix of tilesets. Each number is an id for an image
+    const roomTileMap = [               //12 13
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], // 1
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], // 14
+    ];
 
     onMount(() => {
         if (typeof window !== 'undefined') {
@@ -41,6 +78,8 @@
                 new Obstacle(0, windowHeight - 80, windowWidth, 80),
             ]);
 
+            game.setTileMap(roomTileMap); 
+
             window.addEventListener('keydown', game.handleKeyDown);
             window.addEventListener('keyup', game.handleKeyUp);
 
@@ -48,7 +87,7 @@
             game.startAnimation(boundaryHit => {
                 game.cancelAnimation();
                 if (boundaryHit === 'right') {
-                    game.initializeCharacterPosition(150, 450);
+                    game.initializeCharacterPosition(150, 400);
                     goto('/main_room');
                 }
             });
@@ -69,6 +108,23 @@
     $: susieSpriteUrl = `/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
     $: ralseiSpriteUrl = `/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
 </script>
+
+<div class="tile-container">
+    {#each tileMap as row, y}
+        {#each row as tileId, x}
+            <div
+                class="tile"
+                style="
+                    left: {x * tileSize}px;
+                    top: {y * tileSize}px;
+                    width: {tileSize}px;
+                    height: {tileSize}px;
+                    background-image: url({tileset[tileId] || ''});
+                "
+            ></div>
+        {/each}
+    {/each}
+</div>
 
 <div class="character" style="--krisX: {characterX}px; --krisY: {characterY - 25}px; z-index: {krisZIndex};">
     <div class="character_kris" style="background-image: url('{krisSpriteUrl}');"></div>

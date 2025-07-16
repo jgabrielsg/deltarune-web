@@ -24,13 +24,13 @@ export class InteractionBox {
 
 // --- Game State and Properties ---
 const gameState = {
+    // just for the first room (or f5)
     characterX: 300,
     characterY: 200,
     characterSusie_X: 300,
     characterSusie_Y: 200,
     characterRalsei_X: 300,
     characterRalsei_Y: 200,
-
     krisZIndex: 0,
     susieZIndex: 0,
     ralseiZIndex: 0,
@@ -58,14 +58,20 @@ const gameState = {
     animationTimer: 0,
     animationSpeed: 16,
 
+    // So we get susie and ralsei positions
     playerPositionHistory: [],
     maxHistorySize: 80,
 
+    // For the text gifs
     showInteractionGif: false,
     currentInteractionGif: '',
     playerInInteractionZone: false,
     currentInteractionBox: null,
     gamePaused: false,
+
+    // 64x64 tiles, but the pixel art will be 16x16. TileMap will be 24x14
+    tileSize: 64,
+    tileMap: [],
 };
 
 // Event emitter to notify Svelte components of state changes
@@ -104,6 +110,11 @@ export const game = {
 
     setInteractionBoxes(newInteractionBoxes) {
         gameState.interactionBoxes = newInteractionBoxes;
+        notifySubscribers();
+    },
+
+    setTileMap(newMap) {
+        gameState.tileMap = newMap;
         notifySubscribers();
     },
 

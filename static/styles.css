@@ -75,3 +75,18 @@
     background-repeat: no-repeat;
     image-rendering: pixelated;
 }
+
+.tile-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+}
+
+.tile {
+    position: absolute;
+    background-size: cover;
+    image-rendering: pixelated; 
+}
