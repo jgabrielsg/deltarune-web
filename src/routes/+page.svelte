@@ -25,7 +25,7 @@
 
     // 'face' mapping
     const portraits = {
-        //frog1: '/images/faces/frog.png', //example
+        //frog1: './images/faces/frog.png', //example
     };
 
     $: if (isTyping && dialogueText) {
@@ -93,47 +93,47 @@
 
     const tileset = {
         // Floor
-        90: '/images/tiles/ruinsLight.png',
-        91: '/images/tiles/ruinsDark.png',
-        92: '/images/tiles/ruinsTL.png',
-        93: '/images/tiles/ruinsTR.png',
-        94: '/images/tiles/ruinsDL.png',
-        95: '/images/tiles/ruinsDR.png',
+        90: './images/tiles/ruinsLight.png',
+        91: './images/tiles/ruinsDark.png',
+        92: './images/tiles/ruinsTL.png',
+        93: './images/tiles/ruinsTR.png',
+        94: './images/tiles/ruinsDL.png',
+        95: './images/tiles/ruinsDR.png',
         
-        99: '/images/tiles/BLACK.png',
+        99: './images/tiles/BLACK.png',
 
         // Main wall
-        10: '/images/tiles/ruinsWallD.png',
-        11: '/images/tiles/ruinsWall.png',
-        12: '/images/tiles/ruinsWallT.png',
+        10: './images/tiles/ruinsWallD.png',
+        11: './images/tiles/ruinsWall.png',
+        12: './images/tiles/ruinsWallT.png',
 
         // Main wall (corner)
-        13: '/images/tiles/ruinsWallDC.png',
-        14: '/images/tiles/ruinsWallC.png',
-        15: '/images/tiles/ruinsWallTC.png',
+        13: './images/tiles/ruinsWallDC.png',
+        14: './images/tiles/ruinsWallC.png',
+        15: './images/tiles/ruinsWallTC.png',
     
-        16: '/images/tiles/ruinsWallDC_2.png',
-        17: '/images/tiles/ruinsWallC_2.png',
-        18: '/images/tiles/ruinsWallTC_2.png',
+        16: './images/tiles/ruinsWallDC_2.png',
+        17: './images/tiles/ruinsWallC_2.png',
+        18: './images/tiles/ruinsWallTC_2.png',
 
         // Side walls
-        20: '/images/tiles/ruinsWallL.png',
-        21: '/images/tiles/ruinsWallR.png',
-        22: '/images/tiles/ruinsWallDOWN.png',
+        20: './images/tiles/ruinsWallL.png',
+        21: './images/tiles/ruinsWallR.png',
+        22: './images/tiles/ruinsWallDOWN.png',
 
         // Corners walls
-        30: '/images/tiles/ruinsWallTL.png',
-        31: '/images/tiles/ruinsWallTR.png',
-        32: '/images/tiles/ruinsWallDL.png',
-        33: '/images/tiles/ruinsWallDR.png',
+        30: './images/tiles/ruinsWallTL.png',
+        31: './images/tiles/ruinsWallTR.png',
+        32: './images/tiles/ruinsWallDL.png',
+        33: './images/tiles/ruinsWallDR.png',
 
-        34: '/images/tiles/ruinsWallTLIn.png',
-        35: '/images/tiles/ruinsWallTRIn.png',
-        36: '/images/tiles/ruinsWallDLIn.png',
-        37: '/images/tiles/ruinsWallDRIn.png',
+        34: './images/tiles/ruinsWallTLIn.png',
+        35: './images/tiles/ruinsWallTRIn.png',
+        36: './images/tiles/ruinsWallDLIn.png',
+        37: './images/tiles/ruinsWallDRIn.png',
 
-        38: '/images/tiles/ruinsWallDLC.png',
-        39: '/images/tiles/ruinsWallDRC.png',
+        38: './images/tiles/ruinsWallDLC.png',
+        39: './images/tiles/ruinsWallDRC.png',
     };
 
     // 24x14 matrix of tilesets. Each number is an id for an image
@@ -170,10 +170,10 @@
                 new Obstacle(windowWidth / 2 + 44, windowHeight - 140, windowWidth / 2 - 64, 150),
 
                 // objects with interaction
-                new Obstacle(windowWidth/2      -60, windowHeight / 2 - 20, 120, 80, '/images/spr_classdesk(0).png'),
-                new Obstacle(windowWidth/2 - 256-60, 128, 120, 80, '/images/spr_sign.png'),
-                new Obstacle(windowWidth/2      -60, 128, 120, 80, '/images/spr_sign.png'),
-                new Obstacle(windowWidth/2 + 256-60, 128, 120, 80, '/images/spr_sign.png'),
+                new Obstacle(windowWidth/2      -60, windowHeight / 2 - 20, 120, 80, './images/spr_classdesk(0).png'),
+                new Obstacle(windowWidth/2 - 256-60, 128, 120, 80, './images/spr_sign.png'),
+                new Obstacle(windowWidth/2      -60, 128, 120, 80, './images/spr_sign.png'),
+                new Obstacle(windowWidth/2 + 256-60, 128, 120, 80, './images/spr_sign.png'),
             ]);
 
             game.setInteractionBoxes([
@@ -194,7 +194,7 @@
                 game.cancelAnimation(); // Stop animation before navigating
                 if (boundaryHit === 'bottom') {
                     game.initializeCharacterPosition((windowWidth / 2) - (characterSize / 2), 120);
-                    goto('/main_room');
+                    goto('./main_room');
                 }
             });
         }
