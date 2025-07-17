@@ -89,3 +89,46 @@
     background-size: cover;
     image-rendering: pixelated; 
 }
+
+@font-face {
+    font-family: 'Determination Mono';
+    src: url('/fonts/determinationmono.ttf') format('truetype');
+}
+
+.dialogue-overlay {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; 
+    max-width: 900px;
+    z-index: 1000; 
+}
+
+.dialogue-box {
+    background-image: url('/images/text_box.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 40px;
+    height: 200px;
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.dialogue-face {
+    width: 128px; 
+    height: 128px;
+    margin-right: 25px;
+    flex-shrink: 0; 
+    image-rendering: pixelated; 
+}
+
+.dialogue-text {
+    font-family: 'Determination Mono', monospace;
+    font-size: 40px;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+    white-space: pre-wrap;
+}

@@ -1,24 +1,27 @@
 // --- Obstacle Class ---
 export class Obstacle {
-    constructor(x, y, width, height, sprite = null) {
+    constructor(x, y, width, height, sprite = null, id = null) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.sprite = sprite;
+        this.id = id;
         this.bounds = { x, y, width, height };
     }
 }
 
 // --- InteractionBox Class  ---
 export class InteractionBox {
-    constructor(x, y, width, height, gif) {
+    constructor(x, y, width, height, text, face = null, targetId = null) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.bounds = { x, y, width, height };
-        this.gif = gif; // path to the GIF
+        this.text = text;       // text that will be shown
+        this.face = face;       // the face sprite
+        this.targetId = targetId;
     }
 }
 
@@ -63,8 +66,6 @@ const gameState = {
     maxHistorySize: 80,
 
     // For the text gifs
-    showInteractionGif: false,
-    currentInteractionGif: '',
     playerInInteractionZone: false,
     currentInteractionBox: null,
     gamePaused: false,
@@ -72,6 +73,17 @@ const gameState = {
     // 64x64 tiles, but the pixel art will be 16x16. TileMap will be 24x14
     tileSize: 64,
     tileMap: [],
+
+    // animations with interactions. works for npcs
+    activeTargetId: null,
+    interactionAnimationFrame: 0,
+    interactionAnimationTimer: 0,
+    interactionAnimationSpeed: 30,
+
+    showDialogueBox: false,         
+    dialogueText: '',               
+    dialogueFace: null,             
+    isTyping: false, 
 };
 
 // Event emitter to notify Svelte components of state changes
@@ -132,37 +144,44 @@ export const game = {
     },
     
     handleKeyDown(event) {
-        // All possible keys
         if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Shift'].includes(event.key)) {
             event.preventDefault();
         }
 
-        // Add 'z' key if not paused (during interactions)
-        if (!gameState.gamePaused || event.key === 'z' || event.key === 'Z') {
+        // Permitir 'Z' mesmo quando o jogo está pausado
+        if (event.key === 'z' || event.key === 'Z') {
+            gameState.pressedKeys.Z = true;
+        } else if (!gameState.gamePaused) {
             if (gameState.pressedKeys.hasOwnProperty(event.key)) {
                 gameState.pressedKeys[event.key] = true;
             }
         }
-
-        // Activate the gif (or deactivate it if already on)
+        
+        // ✨ LÓGICA DE INTERAÇÃO COM 'Z' ✨
         if (event.key === 'z' || event.key === 'Z') {
-            if (gameState.playerInInteractionZone && gameState.currentInteractionBox) {
-                gameState.showInteractionGif = !gameState.showInteractionGif;
-                if (gameState.showInteractionGif) {
-                    gameState.currentInteractionGif = gameState.currentInteractionBox.gif;
-                    gameState.gamePaused = true;
-                } else {
-                    gameState.currentInteractionGif = '';
-                    gameState.gamePaused = false;
-                }
-            } else if (gameState.showInteractionGif) {
-                gameState.showInteractionGif = false;
-                gameState.currentInteractionGif = '';
+            // Se já está digitando, pula a animação e mostra o texto completo
+            if (gameState.isTyping) {
+                gameState.isTyping = false; // Sinaliza para a lógica de digitação parar e mostrar tudo
+            }
+            // Se não está digitando, mas a caixa está aberta, fecha a caixa
+            else if (gameState.showDialogueBox) {
+                gameState.showDialogueBox = false;
                 gameState.gamePaused = false;
+                gameState.activeTargetId = null;
+            }
+            // Se a caixa está fechada e o jogador está na zona, abre a caixa e começa a digitar
+            else if (gameState.playerInInteractionZone && gameState.currentInteractionBox) {
+                gameState.showDialogueBox = true;
+                gameState.gamePaused = true;
+                gameState.dialogueText = gameState.currentInteractionBox.text;
+                gameState.dialogueFace = gameState.currentInteractionBox.face;
+                gameState.activeTargetId = gameState.currentInteractionBox.targetId;
+                gameState.isTyping = true; // Inicia o processo de digitação
             }
         }
         notifySubscribers();
     },
+    
 
     // Stoping the key
     handleKeyUp(event) {
@@ -233,11 +252,6 @@ export const game = {
         } else if (!foundInteraction && gameState.playerInInteractionZone) {
             gameState.playerInInteractionZone = false;
             gameState.currentInteractionBox = null;
-            if (gameState.showInteractionGif) {
-                gameState.showInteractionGif = false;
-                gameState.currentInteractionGif = '';
-                gameState.gamePaused = false;
-            }
         }
 
         // --- Room Transition Logic (Decoupled) ---
@@ -294,11 +308,22 @@ export const game = {
     },
 
     updateAnimation() {
+        // If the game is paused and there is a npc activated, animate it
+        if (gameState.gamePaused && gameState.activeTargetId) {
+            gameState.interactionAnimationTimer++;
+            if (gameState.interactionAnimationTimer >= gameState.interactionAnimationSpeed) {
+                gameState.interactionAnimationTimer = 0;
+                gameState.interactionAnimationFrame = (gameState.interactionAnimationFrame + 1) % 4; // 4 frames for now
+            }
+            notifySubscribers();
+            return; // stop player animation
+        }
+
         if (gameState.gamePaused) {
             gameState.animationFrame = 0;
             gameState.isMoving = false;
             notifySubscribers();
-            return;
+            return; // stop player animation
         }
 
         gameState.isMoving = gameState.pressedKeys.ArrowUp || gameState.pressedKeys.ArrowDown || gameState.pressedKeys.ArrowLeft || gameState.pressedKeys.ArrowRight;
