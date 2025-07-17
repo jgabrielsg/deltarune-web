@@ -1,5 +1,4 @@
 <script>
-    import { base } from '$app/paths';
     import { onMount, onDestroy } from 'svelte';
     import { goto } from '$app/navigation';
     import { game, Obstacle, InteractionBox } from '$lib/GameCore.js';
@@ -16,61 +15,13 @@
         gamePaused, // Keep this for potential UI hints
         tileSize, 
         tileMap,
+        activeTargetId,             // npc's ID that is being animated
+        interactionAnimationFrame,
         showDialogueBox,
         dialogueText,
         dialogueFace,
         isTyping,
     } = game.state;
-
-    let displayedText = '';
-
-    // 'face' mapping
-    const portraits = {
-        //frog1: '/images/faces/frog.png', //example
-    };
-
-    $: if (isTyping && dialogueText) {
-        startTypewriter(dialogueText);
-    }
-
-    let typewriterTimeout;
-    
-    function startTypewriter(fullText) {
-        displayedText = '';
-        let currentIndex = 0;
-
-        const typeCharacter = () => {
-            // Is z, stop tymeout
-            if (!isTyping) {
-                displayedText = fullText;
-                clearTimeout(typewriterTimeout);
-                return;
-            }
-
-            // Next char
-            displayedText += fullText[currentIndex];
-            
-            // Changes the delay depending of the char
-            const char = fullText[currentIndex];
-            let delay = 50; // default
-            if (char === '.' || char === '!' || char === '?') {
-                delay = 400; // bigger delay for punctuation
-            } else if (char === ',') {
-                delay = 200; 
-            }
-            
-            currentIndex++;
-
-            // Stops typing after writing everything
-            if (currentIndex < fullText.length) {
-                typewriterTimeout = setTimeout(typeCharacter, delay);
-            } else {
-                game.state.isTyping = false; 
-            }
-        };
-
-        typeCharacter(); // typing loop
-    }
 
     // Subscribe to game state changes
     const unsubscribe = game.subscribe(newState => {
@@ -85,6 +36,8 @@
             gamePaused,
             tileSize,
             tileMap,
+            activeTargetId,
+            interactionAnimationFrame,
             showDialogueBox,
             dialogueText,
             dialogueFace,
@@ -92,49 +45,102 @@
         } = newState);
     });
 
+    let displayedText = '';
+
+    // Mapeamento de 'face' para o arquivo de imagem do retrato
+    const portraits = {
+        //frog1: '/images/faces/frog.png',
+    };
+
+    // ✨ LÓGICA DO TYPEWRITER ✨
+    // Esta declaração reativa observa as mudanças em 'dialogueText' e 'isTyping'
+    $: if (isTyping && dialogueText) {
+        startTypewriter(dialogueText);
+    }
+
+    let typewriterTimeout; // Para controlar o timeout e poder cancelar
+    
+    function startTypewriter(fullText) {
+        displayedText = ''; // Limpa o texto anterior
+        let currentIndex = 0;
+
+        const typeCharacter = () => {
+            // Se o usuário apertou Z para pular (isTyping se torna false)
+            if (!isTyping) {
+                displayedText = fullText;
+                clearTimeout(typewriterTimeout);
+                return;
+            }
+
+            // Adiciona o próximo caractere
+            displayedText += fullText[currentIndex];
+            
+            // Verifica o caractere para definir a pausa
+            const char = fullText[currentIndex];
+            let delay = 50; // Pausa padrão em ms
+            if (char === '.' || char === '!' || char === '?') {
+                delay = 400; // Pausa maior para pontuação
+            } else if (char === ',') {
+                delay = 200; // Pausa média para vírgulas
+            }
+            
+            currentIndex++;
+
+            // Se ainda houver texto, continua a digitação
+            if (currentIndex < fullText.length) {
+                typewriterTimeout = setTimeout(typeCharacter, delay);
+            } else {
+                // Terminou de digitar
+                game.state.isTyping = false; // Atualiza o estado global
+            }
+        };
+
+        typeCharacter(); // Inicia o loop de digitação
+    }
+
     const tileset = {
         // Floor
-        90: `${base}/images/tiles/ruinsLight.png`,
-        91: `${base}/images/tiles/ruinsDark.png`,
-        92: `${base}/images/tiles/ruinsTL.png`,
-        93: `${base}/images/tiles/ruinsTR.png`,
-        94: `${base}/images/tiles/ruinsDL.png`,
-        95: `${base}/images/tiles/ruinsDR.png`,
+        90: '/images/tiles/ruinsLight.png',
+        91: '/images/tiles/ruinsDark.png',
+        92: '/images/tiles/ruinsTL.png',
+        93: '/images/tiles/ruinsTR.png',
+        94: '/images/tiles/ruinsDL.png',
+        95: '/images/tiles/ruinsDR.png',
         
-        99: `${base}/images/tiles/BLACK.png`,
+        99: '/images/tiles/BLACK.png',
 
         // Main wall
-        10: `${base}/images/tiles/ruinsWallD.png`,
-        11: `${base}/images/tiles/ruinsWall.png`,
-        12: `${base}/images/tiles/ruinsWallT.png`,
+        10: '/images/tiles/ruinsWallD.png',
+        11: '/images/tiles/ruinsWall.png',
+        12: '/images/tiles/ruinsWallT.png',
 
         // Main wall (corner)
-        13: `${base}/images/tiles/ruinsWallDC.png`,
-        14: `${base}/images/tiles/ruinsWallC.png`,
-        15: `${base}/images/tiles/ruinsWallTC.png`,
+        13: '/images/tiles/ruinsWallDC.png',
+        14: '/images/tiles/ruinsWallC.png',
+        15: '/images/tiles/ruinsWallTC.png',
     
-        16: `${base}/images/tiles/ruinsWallDC_2.png`,
-        17: `${base}/images/tiles/ruinsWallC_2.png`,
-        18: `${base}/images/tiles/ruinsWallTC_2.png`,
+        16: '/images/tiles/ruinsWallDC_2.png',
+        17: '/images/tiles/ruinsWallC_2.png',
+        18: '/images/tiles/ruinsWallTC_2.png',
 
         // Side walls
-        20: `${base}/images/tiles/ruinsWallL.png`,
-        21: `${base}/images/tiles/ruinsWallR.png`,
-        22: `${base}/images/tiles/ruinsWallDOWN.png`,
+        20: '/images/tiles/ruinsWallL.png',
+        21: '/images/tiles/ruinsWallR.png',
+        22: '/images/tiles/ruinsWallDOWN.png',
 
         // Corners walls
-        30: `${base}/images/tiles/ruinsWallTL.png`,
-        31: `${base}/images/tiles/ruinsWallTR.png`,
-        32: `${base}/images/tiles/ruinsWallDL.png`,
-        33: `${base}/images/tiles/ruinsWallDR.png`,
+        30: '/images/tiles/ruinsWallTL.png',
+        31: '/images/tiles/ruinsWallTR.png',
+        32: '/images/tiles/ruinsWallDL.png',
+        33: '/images/tiles/ruinsWallDR.png',
 
-        34: `${base}/images/tiles/ruinsWallTLIn.png`,
-        35: `${base}/images/tiles/ruinsWallTRIn.png`,
-        36: `${base}/images/tiles/ruinsWallDLIn.png`,
-        37: `${base}/images/tiles/ruinsWallDRIn.png`,
+        34: '/images/tiles/ruinsWallTLIn.png',
+        35: '/images/tiles/ruinsWallTRIn.png',
+        36: '/images/tiles/ruinsWallDLIn.png',
+        37: '/images/tiles/ruinsWallDRIn.png',
 
-        38: `${base}/images/tiles/ruinsWallDLC.png`,
-        39: `${base}/images/tiles/ruinsWallDRC.png`,
+        38: '/images/tiles/ruinsWallDLC.png',
+        39: '/images/tiles/ruinsWallDRC.png',
     };
 
     // 24x14 matrix of tilesets. Each number is an id for an image
@@ -224,9 +230,9 @@
     }
 
     // Reactive declarations for sprite URLs based on shared state
-    $: krisSpriteUrl = `${base}/images/kris/spr_kris${direction}_dark(${animationFrame}).png`;
-    $: susieSpriteUrl = `${base}/images/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
-    $: ralseiSpriteUrl = `${base}/images/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
+    $: krisSpriteUrl = `/images/kris/spr_kris${direction}_dark(${animationFrame}).png`;
+    $: susieSpriteUrl = `/images/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
+    $: ralseiSpriteUrl = `/images/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
 </script>
 
 <div class="tile-container">
