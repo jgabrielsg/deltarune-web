@@ -29,11 +29,11 @@ export class InteractionBox {
 const gameState = {
     // just for the first room (or f5)
     characterX: 300,
-    characterY: 300,
+    characterY: 400,
     characterSusie_X: 300,
-    characterSusie_Y: 300,
+    characterSusie_Y: 400,
     characterRalsei_X: 300,
-    characterRalsei_Y: 300,
+    characterRalsei_Y: 400,
     krisZIndex: 0,
     susieZIndex: 0,
     ralseiZIndex: 0,

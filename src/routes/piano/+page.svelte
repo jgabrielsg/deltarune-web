@@ -93,65 +93,31 @@
 
     const tileset = {
         // Floor
-        90: '/images/tiles/ruinsLight.png',
-        91: '/images/tiles/ruinsDark.png',
-        92: '/images/tiles/ruinsTL.png',
-        93: '/images/tiles/ruinsTR.png',
-        94: '/images/tiles/ruinsDL.png',
-        95: '/images/tiles/ruinsDR.png',
+        90: '/images/tiles/gray.png',
+        92: '/images/tiles/grayTL.png',
+        93: '/images/tiles/grayTR.png',
+        94: '/images/tiles/grayDL.png',
+        95: '/images/tiles/grayDR.png',
         
         99: '/images/tiles/BLACK.png',
-
-        // Main wall
-        10: '/images/tiles/ruinsWallD.png',
-        11: '/images/tiles/ruinsWall.png',
-        12: '/images/tiles/ruinsWallT.png',
-
-        // Main wall (corner)
-        13: '/images/tiles/ruinsWallDC.png',
-        14: '/images/tiles/ruinsWallC.png',
-        15: '/images/tiles/ruinsWallTC.png',
-    
-        16: '/images/tiles/ruinsWallDC_2.png',
-        17: '/images/tiles/ruinsWallC_2.png',
-        18: '/images/tiles/ruinsWallTC_2.png',
-
-        // Side walls
-        20: '/images/tiles/ruinsWallL.png',
-        21: '/images/tiles/ruinsWallR.png',
-        22: '/images/tiles/ruinsWallDOWN.png',
-
-        // Corners walls
-        30: '/images/tiles/ruinsWallTL.png',
-        31: '/images/tiles/ruinsWallTR.png',
-        32: '/images/tiles/ruinsWallDL.png',
-        33: '/images/tiles/ruinsWallDR.png',
-
-        34: '/images/tiles/ruinsWallTLIn.png',
-        35: '/images/tiles/ruinsWallTRIn.png',
-        36: '/images/tiles/ruinsWallDLIn.png',
-        37: '/images/tiles/ruinsWallDRIn.png',
-
-        38: '/images/tiles/ruinsWallDLC.png',
-        39: '/images/tiles/ruinsWallDRC.png',
     };
 
     // 24x14 matrix of tilesets. Each number is an id for an image
     const roomTileMap = [                           //12 13
-        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 20, 90, 90, 21, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], // 1
-        [30, 12, 12, 12, 12, 12, 12, 12, 12, 12, 15, 90, 90, 18, 12, 12, 12, 12, 12, 12, 12, 12, 12, 31], // 1
-        [20, 11, 11, 11, 11, 11, 11, 11, 11, 11, 14, 90, 90, 17, 11, 11, 11, 11, 11, 11, 11, 11, 11, 21],
-        [20, 11, 11, 11, 11, 11, 11, 11, 11, 11, 14, 90, 90, 17, 11, 11, 11, 11, 11, 11, 11, 11, 11, 21],
-        [15, 10, 10, 10, 10, 10, 10, 10, 10, 10, 13, 90, 90, 16, 10, 10, 10, 10, 10, 10, 10, 10, 10, 18],
-        [14, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 90, 90, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 17],
-        [14, 91, 92, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 93, 91, 17], 
-        [13, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 91, 16], // 7
-        [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90], // 8
-        [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90], 
-        [35, 91, 94, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 95, 91, 34], 
-        [20, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 21],
-        [36, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 37],
-        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], // 14
+        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
+        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], 
+        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
+        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], 
+        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
+        [99, 99, 99, 92, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 93, 99, 99, 99], 
+        [99, 99, 99, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 99, 99, 99],
+        [99, 99, 99, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 99, 99, 99], 
+        [99, 99, 99, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 99, 99, 99],
+        [99, 99, 99, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 99, 99, 99],  
+        [99, 99, 99, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 99, 99, 99],
+        [99, 99, 99, 94, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 95, 99, 99, 99], 
+        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 90, 90, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
+        [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 90, 90, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], // 14
     ];
 
     onMount(() => {
@@ -162,26 +128,18 @@
             game.setWindowDimensions(windowWidth, windowHeight);
 
             game.setObstacles([
-                new Obstacle(0, 0, windowWidth / 2 - 44, 288),
-                new Obstacle(windowWidth / 2 + 44, 0, windowWidth / 2, 288),
+                new Obstacle(0, windowHeight - 140, windowWidth / 2 - 44, 150), // + 12 top so we don't touch the down wall
+                new Obstacle(0, 0, windowWidth, 328), // -30 height to get closest to the wall
+                new Obstacle(windowWidth / 2 + 44, windowHeight - 140, windowWidth / 2 - 64, 150),
+                new Obstacle(windowWidth - 218, 1, 218, windowHeight),
+                new Obstacle(0, 1, 218, windowHeight),
 
-                new Obstacle(0, 1, 96, 480),
-                new Obstacle(0, 590, 96, 300),
-                new Obstacle(windowWidth - 96, 1, 96, 480),
-                new Obstacle(windowWidth - 96, 590, 96, 300),
-
-                new Obstacle(0, windowHeight - 150, windowWidth, 150),
-
-                new Obstacle(windowWidth/2 - 384, 128, 96, 96, '/images/spr_note_poster.png', 'noteposter'),
-                new Obstacle(windowWidth/2 + 256, 128, 96, 96, '/images/spr_kris_poster.png', 'krisposter'),
-
-                new Obstacle(windowWidth/2 - 256, 128, 96, 96, '/images/spr_right_arrow.png', 'rightarrow'),
-                new Obstacle(windowWidth/2 + 128, 128, 96, 96, '/images/spr_left_arrow.png', 'leftarrow'),
+                new Obstacle(windowWidth / 2 - 322, -250, 644, 784, '/images/spr_piano.png'),
+                new Obstacle(windowWidth / 2 - 70, 340, 140, 60, '/images/spr_piano_bench.png'),
             ]);
 
             game.setInteractionBoxes([
-                new InteractionBox(windowWidth/2 - 424, 100, 146, 300, '(Is this a note?)', 'null', 'noteposter'),
-                new InteractionBox(windowWidth/2 + 206, 100, 146, 300, 'Look, Kris, it\'s you!\nIt has your smile!', 'null', 'krisposter'),
+
             ]);
 
             game.setTileMap(roomTileMap); 
@@ -192,17 +150,9 @@
             // Pass goto as a callback for room transitions
             game.startAnimation(boundaryHit => {
                 game.cancelAnimation();
-                if (boundaryHit === 'left') {
-                    game.initializeCharacterPosition(windowWidth - 150, 520);
-                    goto('/main_room');
-                };
-                if (boundaryHit === 'right') {
-                    game.initializeCharacterPosition(150, 520);
-                    goto('/forest_1'); 
-                };
-                if (boundaryHit === 'top') {
-                    game.initializeCharacterPosition((windowWidth / 2) - (characterSize / 2), windowHeight - 150);
-                    goto('/piano'); 
+                if (boundaryHit === 'bottom') {
+                    game.initializeCharacterPosition((windowWidth / 2) - (characterSize / 2), 150);
+                    goto('/right_room');
                 };
             });
         }
@@ -257,7 +207,7 @@
         class="obstacle"
         style="
             top: {obstacle.y}px; left: {obstacle.x}px;
-            z-index: {Math.floor(obstacle.y)};
+            z-index: {obstacle.y < 0 ? 1 : Math.floor(obstacle.y)};
             width: {obstacle.width}px; height: {obstacle.height}px;
             background-image: url('{obstacle.sprite}');
             background-color: {obstacle.sprite ? 'transparent' : 'firebrick'};

@@ -240,10 +240,10 @@
 </div>
 
 <div class="character_susie"
-    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterSusie_X - 45}px; --susieY: {characterSusie_Y - 140}px; z-index: {susieZIndex};">
+    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterSusie_X - 35}px; --susieY: {characterSusie_Y - 115}px; z-index: {susieZIndex};">
 </div>
 <div class="character_ralsei"
-    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterRalsei_X - 45}px; --ralseiY: {characterRalsei_Y - 130}px; z-index: {ralseiZIndex};">
+    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterRalsei_X - 35}px; --ralseiY: {characterRalsei_Y - 105}px; z-index: {ralseiZIndex};">
 </div>
 
 {#each obstacles as obstacle (obstacle.x + '-' + obstacle.y)}

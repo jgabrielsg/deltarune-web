@@ -220,16 +220,16 @@
     {/each}
 </div>
 
-<div class="character" style="--krisX: {characterX}px; --krisY: {characterY - 25}px; z-index: {krisZIndex};">
+<div class="character" style="--krisX: {characterX }px; --krisY: {characterY - 25}px; z-index: {krisZIndex};">
     <div class="character_kris" style="background-image: url('{krisSpriteUrl}');"></div>
     <div class="character_heart"></div>
 </div>
 
 <div class="character_susie"
-    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterSusie_X - 35}px; --susieY: {characterSusie_Y - 140}px; z-index: {susieZIndex};">
+    style="background-image: url('{susieSpriteUrl}'); --susieX: {characterSusie_X - 35}px; --susieY: {characterSusie_Y - 115}px; z-index: {susieZIndex};">
 </div>
 <div class="character_ralsei"
-    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterRalsei_X - 35}px; --ralseiY: {characterRalsei_Y - 130}px; z-index: {ralseiZIndex};">
+    style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterRalsei_X - 35}px; --ralseiY: {characterRalsei_Y - 105}px; z-index: {ralseiZIndex};">
 </div>
 
 {#each obstacles as obstacle (obstacle.x + '-' + obstacle.y)}
@@ -245,6 +245,29 @@
         "
     ></div>
 {/each}
+
+{#each interactionBoxes as interactionB (interactionB.x + '-' + interactionB.y)}
+    <div
+        class="interactionBox"
+        style="
+            top: {interactionB.y}px; left: {interactionB.x}px;
+            width: {interactionB.width}px; height: {interactionB.height}px;
+        "
+    ></div>
+{/each}
+
+{#if showDialogueBox}
+    <div class="dialogue-overlay">
+        <div class="dialogue-box">
+            {#if dialogueFace && portraits[dialogueFace]}
+                <img class="dialogue-face" src="{portraits[dialogueFace]}" alt="Character Face" />
+            {/if}
+            <p class="dialogue-text">
+                {displayedText}
+            </p>
+        </div>
+    </div>
+{/if}
 
 <style>
     :global(body) {
