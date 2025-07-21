@@ -83,7 +83,8 @@ const gameState = {
     showDialogueBox: false,         
     dialogueText: '',               
     dialogueFace: null,             
-    isTyping: false, 
+    isTyping: false,
+    roomUpdateCallbacks: [], // Array for generalized animation function
 };
 
 // Event emitter to notify Svelte components of state changes
@@ -214,11 +215,13 @@ export const game = {
         let newX = gameState.characterX;
         let newY = gameState.characterY;
 
+        // Move the player depending on the speed
         if (gameState.pressedKeys.ArrowUp) newY -= currentSpeed;
         if (gameState.pressedKeys.ArrowDown) newY += currentSpeed;
         if (gameState.pressedKeys.ArrowLeft) newX -= currentSpeed;
         if (gameState.pressedKeys.ArrowRight) newX += currentSpeed;
-
+    
+        // The player can't get inside an object or get out of bounds
         const futureXBounds = { x: newX, y: gameState.characterY, width: gameState.characterSize, height: gameState.characterSize };
         for (const obstacle of gameState.obstacles) {
             if (game.isColliding(futureXBounds, obstacle.bounds)) {
@@ -237,6 +240,7 @@ export const game = {
         gameState.characterX = Math.max(0, Math.min(newX, gameState.windowWidth - gameState.characterSize));
         gameState.characterY = Math.max(0, Math.min(newY, gameState.windowHeight - gameState.characterSize));
 
+        // Get the interaction boxes. Allow the player to use Z to interact.
         let foundInteraction = false;
         const characterBounds = { x: gameState.characterX, y: gameState.characterY, width: gameState.characterSize, height: gameState.characterSize };
         for (const box of gameState.interactionBoxes) {
@@ -275,8 +279,10 @@ export const game = {
             return;
         }
 
+        // The z-index of kris
         gameState.krisZIndex = gameState.characterY + gameState.characterSize;
 
+        // The array that saves Kris' last positions
         const lastRecordedPosition = gameState.playerPositionHistory[gameState.playerPositionHistory.length - 1];
         if (!lastRecordedPosition || lastRecordedPosition.x !== gameState.characterX || lastRecordedPosition.y !== gameState.characterY || lastRecordedPosition.direc !== gameState.direction) {
             gameState.playerPositionHistory.push({ x: gameState.characterX, y: gameState.characterY, direc: gameState.direction });
@@ -286,6 +292,7 @@ export const game = {
             gameState.playerPositionHistory.shift();
         }
 
+        // Susie's position is the halfway point of the array
         const susieDelayIndex = Math.max(0, gameState.playerPositionHistory.length - Math.floor(gameState.maxHistorySize / 2) - 1);
         if (gameState.playerPositionHistory.length > 0) {
             const susiePosition = gameState.playerPositionHistory[susieDelayIndex];
@@ -295,6 +302,7 @@ export const game = {
             gameState.susieZIndex = gameState.characterSusie_Y + gameState.characterSize;
         }
 
+        // Ralsei is the last value in the array (he stays the furthest)
         const ralseiDelayIndex = Math.max(0, gameState.playerPositionHistory.length - gameState.maxHistorySize - 1);
         if (gameState.playerPositionHistory.length > 0) {
             const ralseiPosition = gameState.playerPositionHistory[ralseiDelayIndex];
@@ -308,7 +316,10 @@ export const game = {
     },
 
     updateAnimation() {
-        // If the game is paused and there is a npc activated, animate it
+        ///////////////////
+        // NPC animation
+        ///////////////////
+        // If the game is paused and there is a npc activated, animate it (look at froggit)
         if (gameState.gamePaused && gameState.activeTargetId) {
             gameState.interactionAnimationTimer++;
             if (gameState.interactionAnimationTimer >= gameState.interactionAnimationSpeed) {
@@ -326,19 +337,25 @@ export const game = {
             return; // stop player animation
         }
 
+        ///////////////////
+        // Player animation
+        ///////////////////
         gameState.isMoving = gameState.pressedKeys.ArrowUp || gameState.pressedKeys.ArrowDown || gameState.pressedKeys.ArrowLeft || gameState.pressedKeys.ArrowRight;
 
+        // No movement => first frame, which the player is standing
         if (!gameState.isMoving) {
             gameState.animationFrame = 0;
             notifySubscribers();
             return;
         }
 
+        // up, down, left, right
         if (gameState.pressedKeys.ArrowUp) gameState.direction = 'u';
         else if (gameState.pressedKeys.ArrowDown) gameState.direction = 'd';
         else if (gameState.pressedKeys.ArrowLeft) gameState.direction = 'l';
         else if (gameState.pressedKeys.ArrowRight) gameState.direction = 'r';
 
+        // each X ms, change the frame
         gameState.animationTimer++;
         if (gameState.animationTimer >= gameState.animationSpeed) {
             gameState.animationTimer = 0;
@@ -347,7 +364,10 @@ export const game = {
         notifySubscribers();
     },
 
+    // It's used to go to another room after a bondary hit
     animate(gotoRoomCallback) {
+        gameState.roomUpdateCallbacks.forEach(callback => callback());
+        
         game.updateCharacterPosition(gotoRoomCallback);
         game.updateAnimation();
         gameState.animationFrameId = requestAnimationFrame(() => game.animate(gotoRoomCallback));
@@ -365,5 +385,15 @@ export const game = {
             cancelAnimationFrame(gameState.animationFrameId);
             gameState.animationFrameId = null;
         }
+    },
+
+    // Allows that a page register an own update function
+    registerRoomUpdate(callback) {
+        gameState.roomUpdateCallbacks.push(callback);
+    },
+
+    // Clear animations after leaving the page
+    clearRoomUpdates() {
+        gameState.roomUpdateCallbacks = [];
     }
 };

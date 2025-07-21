@@ -135,7 +135,7 @@
                 new Obstacle(0, 1, 218, windowHeight),
 
                 new Obstacle(windowWidth / 2 - 322, -250, 644, 784, '/images/spr_piano.png'),
-                new Obstacle(windowWidth / 2 - 70, 340, 140, 60, '/images/spr_piano_bench.png'),
+                new Obstacle(windowWidth / 2 - 70, 290, 140, 60, '/images/spr_piano_bench.png'),
             ]);
 
             game.setInteractionBoxes([
