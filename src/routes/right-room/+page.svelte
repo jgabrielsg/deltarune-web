@@ -27,8 +27,8 @@
     // 'face' mapping
     const portraits = {
         //frog1: '/images/faces/frog.png', //example
-        susieConfused: '/images/portraits/susie/spr_face_susie_alt_0.png',
-        ralseiHappy: '/images/portraits/ralsei/spr_face_r_dark_8.png',
+        susieConfused: `${base}/images/portraits/susie/spr_face_susie_alt_0.png`,
+        ralseiHappy: `${base}/images/portraits/ralsei/spr_face_r_dark_8.png`,
     };
 
     $: if (isTyping && dialogueText) {
