@@ -34,55 +34,55 @@
     const activeAudios = {};
 
     const keyMappings = {
-        '1': { sound: '/sounds/C2.mp3', sprite: '/images/piano/spr_C_F.png', width: 16, height: 108, left: 320, top: 8, noteName: 'C'},
-        '2': { sound: '/sounds/Db2.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 333, top: 8, noteName: 'D♭' },
-        '3': { sound: '/sounds/D2.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 340, top: 8, noteName: 'D' },
-        '4': { sound: '/sounds/Eb2.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 453, top: 8, noteName: 'E♭'},
-        '5': { sound: '/sounds/E2.mp3', sprite: '/images/piano/spr_B_E.png', width: 16, height: 108, left: 360, top: 8, noteName: 'E' },
-        '6': { sound: '/sounds/F2.mp3', sprite: '/images/piano/spr_C_F.png', width: 16, height: 108, left: 380, top: 8, noteName: 'F' },
-        '7': { sound: '/sounds/Gb2.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 393, top: 8, noteName: 'G♭' },
-        '8': { sound: '/sounds/G2.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 400, top: 8, noteName: 'G' },
-        '9': { sound: '/sounds/Ab2.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 413, top: 8, noteName: 'A♭' },
-        '0': { sound: '/sounds/A2.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 420, top: 8, noteName: 'A' },
-        '-': { sound: '/sounds/Bb2.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 433, top: 8, noteName: 'B♭' },
-        '=': { sound: '/sounds/B2.mp3', sprite: '/images/piano/spr_B_E.png', width: 16, height: 108, left: 440, top: 8, noteName: 'B' },
+        '1': { sound: `${base}/sounds/C2.mp3`, sprite: `${base}/images/piano/spr_C_F.png`, width: 16, height: 108, left: 320, top: 8, noteName: 'C'},
+        '2': { sound: `${base}/sounds/Db2.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 333, top: 8, noteName: 'D♭' },
+        '3': { sound: `${base}/sounds/D2.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 340, top: 8, noteName: 'D' },
+        '4': { sound: `${base}/sounds/Eb2.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 453, top: 8, noteName: 'E♭'},
+        '5': { sound: `${base}/sounds/E2.mp3`, sprite: `${base}/images/piano/spr_B_E.png`, width: 16, height: 108, left: 360, top: 8, noteName: 'E' },
+        '6': { sound: `${base}/sounds/F2.mp3`, sprite: `${base}/images/piano/spr_C_F.png`, width: 16, height: 108, left: 380, top: 8, noteName: 'F' },
+        '7': { sound: `${base}/sounds/Gb2.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 393, top: 8, noteName: 'G♭' },
+        '8': { sound: `${base}/sounds/G2.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 400, top: 8, noteName: 'G' },
+        '9': { sound: `${base}/sounds/Ab2.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 413, top: 8, noteName: 'A♭' },
+        '0': { sound: `${base}/sounds/A2.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 420, top: 8, noteName: 'A' },
+        '-': { sound: `${base}/sounds/Bb2.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 433, top: 8, noteName: 'B♭' },
+        '=': { sound: `${base}/sounds/B2.mp3`, sprite: `${base}/images/piano/spr_B_E.png`, width: 16, height: 108, left: 440, top: 8, noteName: 'B' },
 
-        'q': { sound: '/sounds/C3.mp3', sprite: '/images/piano/spr_C_F.png', width: 16, height: 108, left: 460, top: 8, noteName: 'C' },
-        'w': { sound: '/sounds/Db3.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 473, top: 8, noteName: 'D♭' },
-        'e': { sound: '/sounds/D3.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 480, top: 8, noteName: 'D' },
-        'r': { sound: '/sounds/Eb3.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 493, top: 8, noteName: 'E♭' },
-        't': { sound: '/sounds/E3.mp3', sprite: '/images/piano/spr_B_E.png', width: 16, height: 108, left: 500, top: 8, noteName: 'E' },
-        'y': { sound: '/sounds/F3.mp3', sprite: '/images/piano/spr_C_F.png', width: 16, height: 108, left: 520, top: 8, noteName: 'F' },
-        'u': { sound: '/sounds/Gb3.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 533, top: 8, noteName: 'G♭' },
-        'i': { sound: '/sounds/G3.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 540, top: 8, noteName: 'G' },
-        'o': { sound: '/sounds/Ab3.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 553, top: 8, noteName: 'A♭' },
-        'p': { sound: '/sounds/A3.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 560, top: 8, noteName: 'A' },
-        '[': { sound: '/sounds/Bb3.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 573, top: 8, noteName: 'B♭' },
-        ']': { sound: '/sounds/B3.mp3', sprite: '/images/piano/spr_B_E.png', width: 16, height: 108, left: 580, top: 8, noteName: 'B' },
-        '\\': { sound: '/sounds/C4.mp3', sprite: '/images/piano/spr_C_F.png', width: 16, height: 108, left: 600, top: 8, noteName: 'C' },
+        'q': { sound: `${base}/sounds/C3.mp3`, sprite: `${base}/images/piano/spr_C_F.png`, width: 16, height: 108, left: 460, top: 8, noteName: 'C' },
+        'w': { sound: `${base}/sounds/Db3.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 473, top: 8, noteName: 'D♭' },
+        'e': { sound: `${base}/sounds/D3.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 480, top: 8, noteName: 'D' },
+        'r': { sound: `${base}/sounds/Eb3.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 493, top: 8, noteName: 'E♭' },
+        't': { sound: `${base}/sounds/E3.mp3`, sprite: `${base}/images/piano/spr_B_E.png`, width: 16, height: 108, left: 500, top: 8, noteName: 'E' },
+        'y': { sound: `${base}/sounds/F3.mp3`, sprite: `${base}/images/piano/spr_C_F.png`, width: 16, height: 108, left: 520, top: 8, noteName: 'F' },
+        'u': { sound: `${base}/sounds/Gb3.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 533, top: 8, noteName: 'G♭' },
+        'i': { sound: `${base}/sounds/G3.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 540, top: 8, noteName: 'G' },
+        'o': { sound: `${base}/sounds/Ab3.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 553, top: 8, noteName: 'A♭' },
+        'p': { sound: `${base}/sounds/A3.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 560, top: 8, noteName: 'A' },
+        '[': { sound: `${base}/sounds/Bb3.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 573, top: 8, noteName: 'B♭' },
+        ']': { sound: `${base}/sounds/B3.mp3`, sprite: `${base}/images/piano/spr_B_E.png`, width: 16, height: 108, left: 580, top: 8, noteName: 'B' },
+        '\\': { sound: `${base}/sounds/C4.mp3`, sprite: `${base}/images/piano/spr_C_F.png`, width: 16, height: 108, left: 600, top: 8, noteName: 'C' },
 
-        'a': { sound: '/sounds/Db4.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 613, top: 8, noteName: 'D♭' },
-        's': { sound: '/sounds/D4.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 620, top: 8, noteName: 'D' },
-        'd': { sound: '/sounds/Eb4.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 633, top: 8, noteName: 'E♭' },
-        'f': { sound: '/sounds/E4.mp3', sprite: '/images/piano/spr_B_E.png', width: 16, height: 108, left: 640, top: 8, noteName: 'E' },
-        'g': { sound: '/sounds/F4.mp3', sprite: '/images/piano/spr_C_F.png', width: 16, height: 108, left: 660, top: 8, noteName: 'F' },
-        'h': { sound: '/sounds/Gb4.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 673, top: 8, noteName: 'G♭' },
-        'j': { sound: '/sounds/G4.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 680, top: 8, noteName: 'G' },
-        'k': { sound: '/sounds/Ab4.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 693, top: 8, noteName: 'A♭' },
-        'l': { sound: '/sounds/A4.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 700, top: 8, noteName: 'A' },
-        ';': { sound: '/sounds/Bb4.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 713, top: 8, noteName: 'B♭' },
-        '\'': { sound: '/sounds/B4.mp3', sprite: '/images/piano/spr_B_E.png', width: 16, height: 108, left: 720, top: 8, noteName: 'B' },
+        'a': { sound: `${base}/sounds/Db4.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 613, top: 8, noteName: 'D♭' },
+        's': { sound: `${base}/sounds/D4.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 620, top: 8, noteName: 'D' },
+        'd': { sound: `${base}/sounds/Eb4.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 633, top: 8, noteName: 'E♭' },
+        'f': { sound: `${base}/sounds/E4.mp3`, sprite: `${base}/images/piano/spr_B_E.png`, width: 16, height: 108, left: 640, top: 8, noteName: 'E' },
+        'g': { sound: `${base}/sounds/F4.mp3`, sprite: `${base}/images/piano/spr_C_F.png`, width: 16, height: 108, left: 660, top: 8, noteName: 'F' },
+        'h': { sound: `${base}/sounds/Gb4.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 673, top: 8, noteName: 'G♭' },
+        'j': { sound: `${base}/sounds/G4.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 680, top: 8, noteName: 'G' },
+        'k': { sound: `${base}/sounds/Ab4.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 693, top: 8, noteName: 'A♭' },
+        'l': { sound: `${base}/sounds/A4.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 700, top: 8, noteName: 'A' },
+        ';': { sound: `${base}/sounds/Bb4.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 713, top: 8, noteName: 'B♭' },
+        '\'': { sound: `${base}/sounds/B4.mp3`, sprite: `${base}/images/piano/spr_B_E.png`, width: 16, height: 108, left: 720, top: 8, noteName: 'B' },
 
-        'z': { sound: '/sounds/C5.mp3', sprite: '/images/piano/spr_C_F.png', width: 16, height: 108, left: 600+140, top: 8, noteName: 'C' },
-        'x': { sound: '/sounds/Db5.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 613+140, top: 8, noteName: 'D♭' },
-        'c': { sound: '/sounds/D5.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 620+140, top: 8, noteName: 'D' },
-        'v': { sound: '/sounds/Eb5.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 633+140, top: 8, noteName: 'E♭' },
-        'b': { sound: '/sounds/E5.mp3', sprite: '/images/piano/spr_B_E.png', width: 16, height: 108, left: 640+140, top: 8, noteName: 'E' },
-        'n': { sound: '/sounds/F5.mp3', sprite: '/images/piano/spr_C_F.png', width: 16, height: 108, left: 660+140, top: 8, noteName: 'F' },
-        'm': { sound: '/sounds/Gb5.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 673+140, top: 8, noteName: 'G♭' },
-        ',': { sound: '/sounds/G5.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 680+140, top: 8, noteName: 'G' },
-        '.': { sound: '/sounds/Ab5.mp3', sprite: '/images/piano/spr_flat.png', width: 12, height: 64, left: 693+140, top: 8, noteName: 'A♭' },
-        '/': { sound: '/sounds/A5.mp3', sprite: '/images/piano/spr_D_G_A.png', width: 16, height: 108, left: 700+140, top: 8, noteName: 'A' },
+        'z': { sound: `${base}/sounds/C5.mp3`, sprite: `${base}/images/piano/spr_C_F.png`, width: 16, height: 108, left: 600+140, top: 8, noteName: 'C' },
+        'x': { sound: `${base}/sounds/Db5.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 613+140, top: 8, noteName: 'D♭' },
+        'c': { sound: `${base}/sounds/D5.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 620+140, top: 8, noteName: 'D' },
+        'v': { sound: `${base}/sounds/Eb5.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 633+140, top: 8, noteName: 'E♭' },
+        'b': { sound: `${base}/sounds/E5.mp3`, sprite: `${base}/images/piano/spr_B_E.png`, width: 16, height: 108, left: 640+140, top: 8, noteName: 'E' },
+        'n': { sound: `${base}/sounds/F5.mp3`, sprite: `${base}/images/piano/spr_C_F.png`, width: 16, height: 108, left: 660+140, top: 8, noteName: 'F' },
+        'm': { sound: `${base}/sounds/Gb5.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 673+140, top: 8, noteName: 'G♭' },
+        ',': { sound: `${base}/sounds/G5.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 680+140, top: 8, noteName: 'G' },
+        '.': { sound: `${base}/sounds/Ab5.mp3`, sprite: `${base}/images/piano/spr_flat.png`, width: 12, height: 64, left: 693+140, top: 8, noteName: 'A♭' },
+        '/': { sound: `${base}/sounds/A5.mp3`, sprite: `${base}/images/piano/spr_D_G_A.png`, width: 16, height: 108, left: 700+140, top: 8, noteName: 'A' },
     };
 
     // --- MUSIC PLAYER LOGIC ---
@@ -380,10 +380,10 @@
     let sitSpeed = 50;
 
     function updateSittingAnimation() {
-        if (frameCount < 9) { // Assuming frames are 0 to 8
+        if (frameCount < 10) { // Assuming frames are 0 to 8
             sitTimer++;
             if (sitTimer >= sitSpeed) {
-                frameCount = Math.min(frameCount + 1, 8); // Ensure frameCount doesn't go above 8
+                frameCount = Math.min(frameCount + 1, 9); // Ensure frameCount doesn't go above 8
                 sitTimer = 0; // Reset timer
             }
         }
@@ -391,6 +391,12 @@
         // Change Z-index when frameCount reaches 2, and keep it
         if (frameCount >= 2 && krisZIndex !== 1000) {
             krisZIndex = 1000;
+        }
+    }
+
+    function updatePlayingPianoAnimation() {
+        if (frameCount === 9) { // only if the sitting animation has ended
+            
         }
     }
 
@@ -501,6 +507,8 @@
 
     // Reactive declaration for the sprite URL
     $: krisSpriteUrl = `${base}/images/kris/kris_sit(${frameCount}).png`;
+    $: susieSpriteUrl = `${base}/images/susie/spr_susieu_eye_dark(0).png`;
+    $: ralseiSpriteUrl = `${base}/images/ralsei/spr_ralseiu(0).png`;
 </script>
 
 <div class="tile-container">
@@ -526,10 +534,10 @@
 </div>
 
 <div class="character_susie"
-	style="background-image: url('/images/susie/spr_susieu_eye_dark(0).png'); --susieX: 540px; --susieY: 640px; z-index: 900;">
+	style="background-image: url('{susieSpriteUrl}'); --susieX: 540px; --susieY: 640px; z-index: 900;">
 </div>
 <div class="character_ralsei"
-	style="background-image: url('/images/ralsei/spr_ralseiu(0).png'); --ralseiX: 900px; --ralseiY: 650px; z-index: 900;">
+	style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: 900px; --ralseiY: 650px; z-index: 900;">
 </div>
 
 
