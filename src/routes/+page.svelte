@@ -171,10 +171,10 @@
                 new Obstacle(windowWidth / 2 + 44, windowHeight - 140, windowWidth / 2 - 64, 150),
 
                 // objects with interaction
-                new Obstacle(windowWidth/2      -60, windowHeight / 2 - 20, 120, 80, '/images/spr_classdesk(0).png'),
-                new Obstacle(windowWidth/2 - 256-60, 128, 120, 80, '/images/spr_sign.png'),
-                new Obstacle(windowWidth/2      -60, 128, 120, 80, '/images/spr_sign.png'),
-                new Obstacle(windowWidth/2 + 256-60, 128, 120, 80, '/images/spr_sign.png'),
+                new Obstacle(windowWidth/2      -60, windowHeight / 2 - 20, 120, 80, `${base}/images/spr_classdesk(0).png`),
+                new Obstacle(windowWidth/2 - 256-60, 128, 120, 80, `${base}/images/spr_sign.png`),
+                new Obstacle(windowWidth/2      -60, 128, 120, 80, `${base}/images/spr_sign.png`),
+                new Obstacle(windowWidth/2 + 256-60, 128, 120, 80, `${base}/images/spr_sign.png`),
             ]);
 
             game.setInteractionBoxes([
@@ -195,7 +195,7 @@
                 game.cancelAnimation(); // Stop animation before navigating
                 if (boundaryHit === 'bottom') {
                     game.initializeCharacterPosition((windowWidth / 2) - (characterSize / 2), 120);
-                    goto('/main_room');
+                    goto('/deltarune-web/main-room');
                 }
             });
         }
@@ -290,126 +290,4 @@
         margin: 0;
         overflow: hidden;
     }
-
-    .obstacle {
-    position: absolute;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    image-rendering: pixelated;
-}
-
-.interactionBox {
-    position: absolute;
-}
-
-.character {
-    width: 30px;
-    height: 30px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(var(--krisX), var(--krisY));
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.character_heart {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('/images/heart.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    image-rendering: pixelated;
-    z-index: 1;
-}
-
-.character_kris {
-    position: absolute;
-    width: 76px;
-    height: 152px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    image-rendering: pixelated;
-    z-index: 2;
-}
-
-.character_susie {
-    position: absolute;
-    width: 104px;
-    height: 184px;
-    transform: translate(var(--susieX), var(--susieY));
-    background-size: contain;
-    background-repeat: no-repeat;
-    image-rendering: pixelated;
-}
-
-.character_ralsei {
-    position: absolute;
-    width: 92px;
-    height: 176px;
-    transform: translate(var(--ralseiX), var(--ralseiY));
-    background-size: contain;
-    background-repeat: no-repeat;
-    image-rendering: pixelated;
-}
-
-.tile-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.tile {
-    position: absolute;
-    background-size: cover;
-    image-rendering: pixelated; 
-}
-
-@font-face {
-    font-family: 'Determination Mono';
-    src: url('/fonts/determinationmono.ttf') format('truetype');
-}
-
-.dialogue-overlay {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%; 
-    max-width: 900px;
-    z-index: 1000; 
-}
-
-.dialogue-box {
-    background-image: url('/images/text_box.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    padding: 40px;
-    height: 200px;
-    display: flex;
-    align-items: flex-start;
-    box-sizing: border-box;
-}
-
-.dialogue-face {
-    width: 128px; 
-    height: 128px;
-    margin-right: 25px;
-    flex-shrink: 0; 
-    image-rendering: pixelated; 
-}
-
-.dialogue-text {
-    font-family: 'Determination Mono', monospace;
-    font-size: 40px;
-    color: white;
-    margin: 0;
-    line-height: 1.2;
-    white-space: pre-wrap;
-}
 </style>

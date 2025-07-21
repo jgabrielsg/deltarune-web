@@ -196,15 +196,15 @@
                 game.cancelAnimation();
                 if (boundaryHit === 'left') {
                     game.initializeCharacterPosition(windowWidth - 150, 520);
-                    goto('/main_room');
+                    goto('/deltarune-web/main-room');
                 };
                 if (boundaryHit === 'right') {
                     game.initializeCharacterPosition(150, 520);
-                    goto('/forest_1'); 
+                    goto('/deltarune-web/forest-1'); 
                 };
                 if (boundaryHit === 'top') {
                     game.initializeCharacterPosition((windowWidth / 2) - (characterSize / 2), windowHeight - 150);
-                    goto('/piano'); 
+                    goto('/deltarune-web/piano'); 
                 };
             });
         }

@@ -183,7 +183,7 @@
                 game.cancelAnimation(); 
                 if (boundaryHit === 'left') {
                     game.initializeCharacterPosition(windowWidth - 150, 520);
-                    goto('/right_room');
+                    goto('/deltarune-web/right-room');
                 }
             });
         }
