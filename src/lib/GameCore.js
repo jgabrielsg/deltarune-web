@@ -149,7 +149,7 @@ export const game = {
             event.preventDefault();
         }
 
-        // Permitir 'Z' mesmo quando o jogo está pausado
+        // Allow 'Z' even when the game is paused
         if (event.key === 'z' || event.key === 'Z') {
             gameState.pressedKeys.Z = true;
         } else if (!gameState.gamePaused) {
@@ -158,26 +158,25 @@ export const game = {
             }
         }
         
-        // ✨ LÓGICA DE INTERAÇÃO COM 'Z' ✨
         if (event.key === 'z' || event.key === 'Z') {
-            // Se já está digitando, pula a animação e mostra o texto completo
+            // If it's already typing, stop it and show all the text if you press Z again
             if (gameState.isTyping) {
-                gameState.isTyping = false; // Sinaliza para a lógica de digitação parar e mostrar tudo
+                gameState.isTyping = false; 
             }
-            // Se não está digitando, mas a caixa está aberta, fecha a caixa
+            // If the typing's finished, Z will clear the dialoguebox
             else if (gameState.showDialogueBox) {
                 gameState.showDialogueBox = false;
                 gameState.gamePaused = false;
                 gameState.activeTargetId = null;
             }
-            // Se a caixa está fechada e o jogador está na zona, abre a caixa e começa a digitar
+            // If the dialoguebox is not onscreen and the player press Z, then it starts.
             else if (gameState.playerInInteractionZone && gameState.currentInteractionBox) {
                 gameState.showDialogueBox = true;
                 gameState.gamePaused = true;
                 gameState.dialogueText = gameState.currentInteractionBox.text;
                 gameState.dialogueFace = gameState.currentInteractionBox.face;
                 gameState.activeTargetId = gameState.currentInteractionBox.targetId;
-                gameState.isTyping = true; // Inicia o processo de digitação
+                gameState.isTyping = true; // Typing starts
             }
         }
         notifySubscribers();

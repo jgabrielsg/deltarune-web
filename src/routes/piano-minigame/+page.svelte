@@ -394,6 +394,12 @@
         }
     }
 
+    function handleGoTo(event) {
+        if (event.key === 'ArrowDown') {
+            goto('/deltarune-web/piano');
+        }
+    }
+
     // Subscribe to game state changes
     const unsubscribe = game.subscribe(newState => {
         ({
@@ -457,6 +463,8 @@
 
             window.addEventListener('keydown', game.handleKeyDown);
             window.addEventListener('keyup', game.handleKeyUp);
+            window.addEventListener('keydown', handleGoTo);
+
             window.addEventListener('keydown', handlePianoKeyDown);
             window.addEventListener('keyup', handlePianoKeyUp);
 
@@ -480,6 +488,8 @@
         if (typeof window !== 'undefined') {
             window.removeEventListener('keydown', game.handleKeyDown);
             window.removeEventListener('keyup', game.handleKeyUp);
+            window.removeEventListener('keydown', handleGoTo);
+            
             window.removeEventListener('keydown', handlePianoKeyDown);
             window.removeEventListener('keyup', handlePianoKeyUp);
             window.removeEventListener('keydown', handleMusicControls)

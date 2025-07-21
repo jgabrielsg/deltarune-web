@@ -22,56 +22,6 @@
         isTyping,
     } = game.state;
 
-    let displayedText = '';
-
-    // 'face' mapping
-    const portraits = {
-        //frog1: '/images/faces/frog.png', //example
-    };
-
-    $: if (isTyping && dialogueText) {
-        startTypewriter(dialogueText);
-    }
-
-    let typewriterTimeout;
-    
-    function startTypewriter(fullText) {
-        displayedText = '';
-        let currentIndex = 0;
-
-        const typeCharacter = () => {
-            // Is z, stop tymeout
-            if (!isTyping) {
-                displayedText = fullText;
-                clearTimeout(typewriterTimeout);
-                return;
-            }
-
-            // Next char
-            displayedText += fullText[currentIndex];
-            
-            // Changes the delay depending of the char
-            const char = fullText[currentIndex];
-            let delay = 50; // default
-            if (char === '.' || char === '!' || char === '?') {
-                delay = 400; // bigger delay for punctuation
-            } else if (char === ',') {
-                delay = 200; 
-            }
-            
-            currentIndex++;
-
-            // Stops typing after writing everything
-            if (currentIndex < fullText.length) {
-                typewriterTimeout = setTimeout(typeCharacter, delay);
-            } else {
-                game.state.isTyping = false; 
-            }
-        };
-
-        typeCharacter(); // typing loop
-    }
-
     // Subscribe to game state changes
     const unsubscribe = game.subscribe(newState => {
         ({
@@ -91,6 +41,21 @@
             isTyping,
         } = newState);
     });
+
+    function handleGoTo(event) {
+        if (event.key === '') {
+            goto('/deltarune-web/piano-minigame');
+        }
+
+        const characterBounds = { x: characterX, y: characterY, width: characterSize, height: characterSize };
+        // Correção aqui: defina as propriedades x, y, width e height para pianoZone
+        const pianoZone = { x: 384, y: 0, width: 768, height: 550 };
+        if (game.isColliding(characterBounds, pianoZone)) {
+            if (event.key === 'z' || event.key === 'Z') {
+                goto('/deltarune-web/piano-minigame');
+            }
+        }
+    }
 
     const tileset = {
         // Floor
@@ -147,6 +112,8 @@
             window.addEventListener('keydown', game.handleKeyDown);
             window.addEventListener('keyup', game.handleKeyUp);
 
+            window.addEventListener('keydown', handleGoTo);
+
             // Pass goto as a callback for room transitions
             game.startAnimation(boundaryHit => {
                 game.cancelAnimation();
@@ -162,6 +129,7 @@
         if (typeof window !== 'undefined') {
             window.removeEventListener('keydown', game.handleKeyDown);
             window.removeEventListener('keyup', game.handleKeyUp);
+            window.removeEventListener('keydown', handleGoTo);
             game.cancelAnimation();
             unsubscribe(); // Clean up subscription
         }
@@ -225,19 +193,6 @@
         "
     ></div>
 {/each}
-
-{#if showDialogueBox}
-    <div class="dialogue-overlay">
-        <div class="dialogue-box">
-            {#if dialogueFace && portraits[dialogueFace]}
-                <img class="dialogue-face" src="{portraits[dialogueFace]}" alt="Character Face" />
-            {/if}
-            <p class="dialogue-text">
-                {displayedText}
-            </p>
-        </div>
-    </div>
-{/if}
 
 <style>
     :global(body) {
