@@ -2,6 +2,7 @@
     import { onMount, onDestroy } from 'svelte';
     import { goto } from '$app/navigation';
     import { game, Obstacle, InteractionBox } from '$lib/GameCore.js';
+    import { base } from '$app/paths';
 
     // Svelte's reactivity for imported store
     let {
@@ -93,13 +94,12 @@
 
     const tileset = {
         // Floor
-        90: '/images/tiles/gray.png',
-        92: '/images/tiles/grayTL.png',
-        93: '/images/tiles/grayTR.png',
-        94: '/images/tiles/grayDL.png',
-        95: '/images/tiles/grayDR.png',
-        
-        99: '/images/tiles/BLACK.png',
+        90: `${base}/images/tiles/gray.png`,
+        92: `${base}/images/tiles/grayTL.png`,
+        93: `${base}/images/tiles/grayTR.png`,
+        94: `${base}/images/tiles/grayDL.png`,
+        95: `${base}/images/tiles/grayDR.png`,
+        99: `${base}/images/tiles/BLACK.png`,
     };
 
     // 24x14 matrix of tilesets. Each number is an id for an image
@@ -168,9 +168,9 @@
     });
 
     // Reactive declarations for sprite URLs based on shared state
-    $: krisSpriteUrl = `/images/kris/spr_kris${direction}_dark(${animationFrame}).png`;
-    $: susieSpriteUrl = `/images/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
-    $: ralseiSpriteUrl = `/images/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
+    $: krisSpriteUrl = `${base}/images/kris/spr_kris${direction}_dark(${animationFrame}).png`;
+    $: susieSpriteUrl = `${base}/images/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
+    $: ralseiSpriteUrl = `${base}/images/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
 </script>
 
 <div class="tile-container">

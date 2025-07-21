@@ -2,6 +2,7 @@
     import { onMount, onDestroy } from 'svelte';
     import { goto } from '$app/navigation';
     import { game, Obstacle, InteractionBox } from '$lib/GameCore.js';
+    import { base } from '$app/paths';
 
     // Svelte's reactivity for imported store
     let {
@@ -414,12 +415,12 @@
 
     const tileset = {
         // Floor
-        90: '/images/tiles/gray.png',
-        92: '/images/tiles/grayTL.png',
-        93: '/images/tiles/grayTR.png',
-        94: '/images/tiles/grayDL.png',
-        95: '/images/tiles/grayDR.png',
-        99: '/images/tiles/BLACK.png',
+        90: `${base}/images/tiles/gray.png`,
+        92: `${base}/images/tiles/grayTL.png`,
+        93: `${base}/images/tiles/grayTR.png`,
+        94: `${base}/images/tiles/grayDL.png`,
+        95: `${base}/images/tiles/grayDR.png`,
+        99: `${base}/images/tiles/BLACK.png`,
     };
 
     const roomTileMap = [
@@ -446,8 +447,8 @@
 
             game.setWindowDimensions(windowWidth, windowHeight);
             game.setObstacles([
-                new Obstacle(windowWidth / 2 - 322, 94, 644, 784, '/images/spr_piano.png'),
-                new Obstacle(windowWidth / 2 - 70, 640, 140, 60, '/images/spr_piano_bench.png'),
+                new Obstacle(windowWidth / 2 - 322, 94, 644, 784, `${base}/images/spr_piano.png`),
+                new Obstacle(windowWidth / 2 - 70, 640, 140, 60, `${base}/images/spr_piano_bench.png`),
             ]);
 
             game.setInteractionBoxes([]);
@@ -489,7 +490,7 @@
     });
 
     // Reactive declaration for the sprite URL
-    $: krisSpriteUrl = `/images/kris/kris_sit(${frameCount}).png`;
+    $: krisSpriteUrl = `${base}/images/kris/kris_sit(${frameCount}).png`;
 </script>
 
 <div class="tile-container">
