@@ -225,7 +225,8 @@
         // Look for the npc who's activated
         if (gamePaused && obstacle.id && obstacle.id === activeTargetId) {
             const basePath = obstacle.sprite.replace('_0.png', ''); // to get the right path
-            return `${base}/${basePath}_${interactionAnimationFrame}.png`;
+            //console.log(`${base}/${basePath}_${interactionAnimationFrame}.png`);
+            return `${basePath}_${interactionAnimationFrame}.png`;
         }
         return obstacle.sprite; // no activation, return the main sprite
     }
