@@ -446,8 +446,8 @@
 
             game.setWindowDimensions(windowWidth, windowHeight);
             game.setObstacles([
-                new Obstacle(windowWidth / 2 - 322, -56, 644, 784, '/images/spr_piano.png'),
-                new Obstacle(windowWidth / 2 - 70, 490, 140, 60, '/images/spr_piano_bench.png'),
+                new Obstacle(windowWidth / 2 - 322, 94, 644, 784, '/images/spr_piano.png'),
+                new Obstacle(windowWidth / 2 - 70, 640, 140, 60, '/images/spr_piano_bench.png'),
             ]);
 
             game.setInteractionBoxes([]);
@@ -509,16 +509,16 @@
 	{/each}
 </div>
 
-<div class="character" style="--krisX: 760px; --krisY: 420px; z-index: {krisZIndex};">
+<div class="character" style="--krisX: 760px; --krisY: 570px; z-index: {krisZIndex};">
 	<div class="character_kris" style="background-image: url('{krisSpriteUrl}');"></div>
 	<div class="character_heart"></div>
 </div>
 
 <div class="character_susie"
-	style="background-image: url('/images/susie/spr_susieu_eye_dark(0).png'); --susieX: 540px; --susieY: 490px; z-index: 900;">
+	style="background-image: url('/images/susie/spr_susieu_eye_dark(0).png'); --susieX: 540px; --susieY: 640px; z-index: 900;">
 </div>
 <div class="character_ralsei"
-	style="background-image: url('/images/ralsei/spr_ralseiu(0).png'); --ralseiX: 900px; --ralseiY: 500px; z-index: 900;">
+	style="background-image: url('/images/ralsei/spr_ralseiu(0).png'); --ralseiX: 900px; --ralseiY: 650px; z-index: 900;">
 </div>
 
 
@@ -592,7 +592,7 @@
 
 	.container_key {
 		position: relative;
-		height: 350px;
+		height: 500px;
 		width: 100%;
 		display: flex;
 		justify-content: center;
