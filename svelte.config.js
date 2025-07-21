@@ -7,9 +7,9 @@ const config = {
             fallback: 'index.html'
         }),
 
-        //paths: {
-        //    base: '/deltarune-web',
-        //},
+        paths: {
+            base: '/deltarune-web',
+        },
     },
 };
 
