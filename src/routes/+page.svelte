@@ -302,19 +302,6 @@
     position: absolute;
 }
 
-.gif-overlay {
-    position: fixed;
-    top: 70%;
-    left: 10%;
-    width: 80%;
-    height: 30%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    image-rendering: pixelated;
-    z-index: 10000;
-}
-
 .character {
     width: 30px;
     height: 30px;
