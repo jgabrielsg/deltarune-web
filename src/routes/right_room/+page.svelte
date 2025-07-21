@@ -26,6 +26,8 @@
     // 'face' mapping
     const portraits = {
         //frog1: '/images/faces/frog.png', //example
+        susieConfused: '/images/portraits/susie/spr_face_susie_alt_0.png',
+        ralseiHappy: '/images/portraits/ralsei/spr_face_r_dark_8.png',
     };
 
     $: if (isTyping && dialogueText) {
@@ -180,8 +182,8 @@
             ]);
 
             game.setInteractionBoxes([
-                new InteractionBox(windowWidth/2 - 424, 100, 146, 300, '(Is this a note?)', 'null', 'noteposter'),
-                new InteractionBox(windowWidth/2 + 206, 100, 146, 300, 'Look, Kris, it\'s you!\nIt has your smile!', 'null', 'krisposter'),
+                new InteractionBox(windowWidth/2 - 424, 100, 146, 300, '* (Is this a note?)', 'susieConfused', 'noteposter'),
+                new InteractionBox(windowWidth/2 + 206, 100, 146, 300, '* Look, Kris, it\'s you!\n* It has your smile!', 'ralseiHappy', 'krisposter'),
             ]);
 
             game.setTileMap(roomTileMap); 
