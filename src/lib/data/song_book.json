@@ -1,0 +1,226 @@
+
+[
+{
+    "name": "Clocks (Intro)",
+    "artist": "Coldplay",
+    "track": [
+    { "key": "d", "time": 0, "duration": 150 },
+    { "key": "[", "time": 200, "duration": 150 },
+    { "key": "i", "time": 400, "duration": 150 },
+    { "key": "d", "time": 600, "duration": 150 },
+    { "key": "[", "time": 800, "duration": 150 },
+    { "key": "i", "time": 1000, "duration": 150 },
+    { "key": "d", "time": 1200, "duration": 150 },
+    { "key": "[", "time": 1400, "duration": 150 },
+
+    { "key": "a", "time": 1600, "duration": 150 },
+    { "key": "[", "time": 1800, "duration": 150 },
+    { "key": "y", "time": 2000, "duration": 150 },
+    { "key": "a", "time": 2200, "duration": 150 },
+    { "key": "[", "time": 2400, "duration": 150 },
+    { "key": "y", "time": 2600, "duration": 150 },
+    { "key": "a", "time": 2800, "duration": 150 },
+    { "key": "[", "time": 3000, "duration": 150 },
+
+    { "key": "a", "time": 3200, "duration": 150 },
+    { "key": "[", "time": 3400, "duration": 150 },
+    { "key": "y", "time": 3600, "duration": 150 },
+    { "key": "a", "time": 3800, "duration": 150 },
+    { "key": "[", "time": 4000, "duration": 150 },
+    { "key": "y", "time": 4200, "duration": 150 },
+    { "key": "a", "time": 4400, "duration": 150 },
+    { "key": "[", "time": 4600, "duration": 150 },
+
+    { "key": "\\", "time": 4800, "duration": 150 },
+    { "key": "o", "time": 5000, "duration": 150 },
+    { "key": "y", "time": 5200, "duration": 150 },
+    { "key": "\\", "time": 5400, "duration": 150 },
+    { "key": "o", "time": 5600, "duration": 150 },
+    { "key": "y", "time": 5800, "duration": 150 },
+    { "key": "\\", "time": 6000, "duration": 150 },
+    { "key": "o", "time": 6200, "duration": 150 },
+
+    { "key": "d", "time": 6400, "duration": 150 },
+    { "key": "[", "time": 6600, "duration": 150 },
+    { "key": "i", "time": 6800, "duration": 150 },
+    { "key": "d", "time": 7000, "duration": 150 },
+    { "key": "[", "time": 7200, "duration": 150 },
+    { "key": "i", "time": 7400, "duration": 150 },
+    { "key": "d", "time": 7600, "duration": 150 },
+    { "key": "[", "time": 7800, "duration": 150 },
+
+    { "key": "a", "time": 8000, "duration": 150 },
+    { "key": "[", "time": 8200, "duration": 150 },
+    { "key": "y", "time": 8400, "duration": 150 },
+    { "key": "a", "time": 8600, "duration": 150 },
+    { "key": "[", "time": 8800, "duration": 150 },
+    { "key": "y", "time": 9000, "duration": 150 },
+    { "key": "a", "time": 9200, "duration": 150 },
+    { "key": "[", "time": 9400, "duration": 150 },
+
+    { "key": "a", "time": 9600, "duration": 150 },
+    { "key": "[", "time": 9800, "duration": 150 },
+    { "key": "y", "time": 10000, "duration": 150 },
+    { "key": "a", "time": 10200, "duration": 150 },
+    { "key": "[", "time": 10400, "duration": 150 },
+    { "key": "y", "time": 10600, "duration": 150 },
+    { "key": "a", "time": 18000, "duration": 150 },
+    { "key": "[", "time": 11000, "duration": 150 },
+
+    { "key": "\\", "time": 11200, "duration": 150 },
+    { "key": "o", "time": 11400, "duration": 150 },
+    { "key": "y", "time": 11600, "duration": 150 },
+    { "key": "\\", "time": 10800, "duration": 150 },
+    { "key": "o", "time": 12000, "duration": 150 },
+    { "key": "y", "time": 12200, "duration": 150 },
+    { "key": "\\", "time": 12400, "duration": 150 },
+    { "key": "o", "time": 12600, "duration": 150 }
+    ]
+},
+{
+    "name": "Last Time",
+    "artist": "Toby Fox (DT)",
+    "track": [
+    { "key": "d", "time": 0, "duration": 100 },
+    { "key": "g", "time": 50, "duration": 200 },
+    { "key": "g", "time": 500, "duration": 200 },
+    { "key": "d", "time": 1000, "duration": 100 },
+    { "key": "g", "time": 1050, "duration": 200 },
+    { "key": "g", "time": 1500, "duration": 200 },
+
+    { "key": "d", "time": 2000, "duration": 100 },
+    { "key": "g", "time": 2050, "duration": 200 },
+    { "key": "g", "time": 2500, "duration": 200 },
+    { "key": "d", "time": 3000, "duration": 100 },
+    { "key": "g", "time": 3050, "duration": 200 },
+    { "key": "g", "time": 3500, "duration": 200 },
+
+    { "key": "s", "time": 4000, "duration": 100 },
+    { "key": "\\", "time": 4050, "duration": 200 },
+    { "key": "\\", "time": 4500, "duration": 200 },
+    { "key": "s", "time": 5000, "duration": 100 },
+    { "key": "\\", "time": 5050, "duration": 200 },
+    { "key": "\\", "time": 5500, "duration": 200 },
+
+    { "key": "s", "time": 6000, "duration": 100 },
+    { "key": "\\", "time": 6050, "duration": 200 },
+    { "key": "\\", "time": 6500, "duration": 200 },
+    { "key": "s", "time": 7000, "duration": 100 },
+
+    { "key": "\\", "time": 7900, "duration": 200 },
+    { "key": "d", "time": 8000, "duration": 100 },
+    { "key": "g", "time": 8050, "duration": 200 },
+    { "key": "g", "time": 8500, "duration": 200 },
+    { "key": "d", "time": 9000, "duration": 100 },
+    { "key": "g", "time": 9050, "duration": 200 },
+    { "key": "g", "time": 9500, "duration": 200 },
+
+    { "key": "d", "time": 10000, "duration": 100 },
+    { "key": "g", "time": 10050, "duration": 200 },
+    { "key": "g", "time": 10500, "duration": 200 },
+    { "key": "d", "time": 11000, "duration": 100 },
+    { "key": "g", "time": 11050, "duration": 200 },
+    { "key": "g", "time": 11500, "duration": 200 },
+
+    { "key": "s", "time": 12000, "duration": 100 },
+    { "key": "\\", "time": 12050, "duration": 400 },
+    { "key": "\\", "time": 12550, "duration": 400 }, { "key": "y", "time": 12550, "duration": 400 },
+    { "key": "\\", "time": 13050, "duration": 400 }, { "key": "[", "time": 13050, "duration": 900 },
+    { "key": "\\", "time": 13550, "duration": 400 }, 
+    { "key": "\\", "time": 14050, "duration": 1400 }, { "key": "p", "time": 14050, "duration": 900 },  { "key": "i", "time": 15050, "duration": 900 }
+
+
+    ]
+},
+{
+    "name": "Megalovania (Intro)",
+    "artist": "Toby Fox",
+    "track": [
+      { "key": "e", "time": 0, "duration": 150 },
+      { "key": "e", "time": 200, "duration": 150 },
+      { "key": "s", "time": 400, "duration": 200 },
+      { "key": "p", "time": 800, "duration": 200 },
+      { "key": "o", "time": 1300, "duration": 150 },
+      { "key": "i", "time": 1700, "duration": 150 },
+      { "key": "y", "time": 2100, "duration": 150 },
+      { "key": "e", "time": 2500, "duration": 100 },
+      { "key": "y", "time": 2700, "duration": 100 },
+      { "key": "i", "time": 2900, "duration": 200 },
+
+    { "key": "=", "time": 3100, "duration": 150 },
+    { "key": "=", "time": 3300, "duration": 150 },
+    { "key": "s", "time": 3500, "duration": 200 },
+    { "key": "p", "time": 3900, "duration": 200 },
+    { "key": "o", "time": 4400, "duration": 150 },
+    { "key": "i", "time": 4800, "duration": 150 },
+    { "key": "y", "time": 5200, "duration": 150 },
+    { "key": "e", "time": 5600, "duration": 100 },
+    { "key": "y", "time": 5800, "duration": 100 },
+    { "key": "i", "time": 6000, "duration": 200 }
+    ]
+  },
+  {
+    "name": "Twinkle, Twinkle, Little Star",
+    "artist": "Nursery Rhyme",
+    "track": [
+      { "key": "q", "time": 0, "duration": 200 },
+      { "key": "q", "time": 400, "duration": 200 },
+      { "key": "i", "time": 800, "duration": 200 },
+      { "key": "i", "time": 1200, "duration": 200 },
+      { "key": "p", "time": 1600, "duration": 200 },
+      { "key": "p", "time": 2000, "duration": 200 },
+      { "key": "i", "time": 2400, "duration": 300 },
+      { "key": "y", "time": 3000, "duration": 200 },
+      { "key": "y", "time": 3400, "duration": 200 },
+      { "key": "t", "time": 3800, "duration": 200 },
+      { "key": "t", "time": 4200, "duration": 200 },
+      { "key": "e", "time": 4600, "duration": 200 },
+      { "key": "e", "time": 5000, "duration": 200 },
+      { "key": "q", "time": 5400, "duration": 300 }
+    ]
+  },
+  {
+    "name": "Ode to Joy",
+    "artist": "Beethoven",
+    "track": [
+      { "key": "t", "time": 0, "duration": 200 },
+      { "key": "t", "time": 400, "duration": 200 },
+      { "key": "y", "time": 800, "duration": 200 },
+      { "key": "i", "time": 1200, "duration": 200 },
+      { "key": "i", "time": 1600, "duration": 200 },
+      { "key": "y", "time": 2000, "duration": 200 },
+      { "key": "t", "time": 2400, "duration": 200 },
+      { "key": "e", "time": 2800, "duration": 200 },
+      { "key": "q", "time": 3200, "duration": 200 },
+      { "key": "q", "time": 3600, "duration": 200 },
+      { "key": "e", "time": 4000, "duration": 200 },
+      { "key": "t", "time": 4400, "duration": 200 },
+      { "key": "t", "time": 4800, "duration": 250 },
+      { "key": "e", "time": 5200, "duration": 150 },
+      { "key": "e", "time": 5600, "duration": 300 }
+    ]
+  },
+  {
+    "name": "Seven Nation Army (Riff)",
+    "artist": "The White Stripes",
+    "track": [
+      { "key": "t", "time": 0, "duration": 200 },
+      { "key": "t", "time": 1000, "duration": 200 },
+      { "key": "i", "time": 1400, "duration": 200 },
+      { "key": "t", "time": 1800, "duration": 200 },
+      { "key": "e", "time": 2200, "duration": 200 },
+      { "key": "q", "time": 2500, "duration": 800 },
+      { "key": "=", "time": 3500, "duration": 800 },
+
+      { "key": "t", "time": 4500, "duration": 200 },
+      { "key": "t", "time": 5500, "duration": 200 },
+      { "key": "i", "time": 5900, "duration": 200 },
+      { "key": "t", "time": 6300, "duration": 200 },
+      { "key": "e", "time": 6700, "duration": 200 },
+      { "key": "q", "time": 7000, "duration": 300 },
+      { "key": "e", "time": 7400, "duration": 200 },
+      { "key": "q", "time": 7700, "duration": 300 },
+      { "key": "=", "time": 8200, "duration": 800 }
+    ]
+  }
+]

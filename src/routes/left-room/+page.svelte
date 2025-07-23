@@ -104,18 +104,18 @@
         99: `${base}/images/tiles/BLACK.png`,
 
         // Main wall
-        10: `${base}/images/tiles/ruinsWallD.png`,
-        11: `${base}/images/tiles/ruinsWall.png`,
-        12: `${base}/images/tiles/ruinsWallT.png`,
+        10: `${base}/images/tiles/ruins2WallDC.png`, // changed this one
+        11: `${base}/images/tiles/ruins2Wall.png`, // changed this one
+        12: `${base}/images/tiles/ruins2WallTC.png`, // changed this one
 
         // Main wall (corner)
         13: `${base}/images/tiles/ruinsWallDC.png`,
         14: `${base}/images/tiles/ruinsWallC.png`,
         15: `${base}/images/tiles/ruinsWallTC.png`,
     
-        16: `${base}/images/tiles/ruinsWallDC_2.png`,
-        17: `${base}/images/tiles/ruinsWallC_2.png`,
-        18: `${base}/images/tiles/ruinsWallTC_2.png`,
+        16: `${base}/images/tiles/ruins2WallDCL.png`, // changed this one
+        17: `${base}/images/tiles/ruins2WallCL.png`, // changed this one
+        18: `${base}/images/tiles/ruins2WallTCL.png`, // changed this one
 
         // Side walls
         20: `${base}/images/tiles/ruinsWallL.png`,
@@ -146,7 +146,7 @@
         [20, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 18],
         [20, 91, 92, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 93, 91, 17], 
         [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 91, 17], // 7
-        [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 16], // 8
+        [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 91, 16], // 8
         [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90], 
         [20, 91, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90], 
         [20, 91, 94, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 95, 91, 34], 
@@ -161,7 +161,6 @@
             const windowHeight = 864;
 
             game.setWindowDimensions(windowWidth, windowHeight);
-            game.setInteractionBoxes([]); // No interaction boxes in this room for now
 
             game.setObstacles([
                 new Obstacle(0, 0, windowWidth, 224),
@@ -171,6 +170,44 @@
                 new Obstacle(windowWidth - 96, 590, 96, 300),
 
                 new Obstacle(0, windowHeight - 150, windowWidth, 150),
+
+                new Obstacle(704, 123, 64, 128, `${base}/images/tiles/fakewater/spr_fakewateropenl_0.png`),
+                new Obstacle(768, 123, 64, 128, `${base}/images/tiles/fakewater/spr_fakewateropenm_0.png`),
+                new Obstacle(832, 123, 64, 128, `${base}/images/tiles/fakewater/spr_fakewateropenr_0.png`),
+                new Obstacle(704, 201, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterl_0.png`),
+                new Obstacle(768, 201, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterm_0.png`),
+                new Obstacle(832, 201, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterr_0.png`),
+                new Obstacle(704, 265, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterl_0.png`),
+                new Obstacle(768, 265, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterm_0.png`),
+                new Obstacle(832, 265, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterr_0.png`),
+                new Obstacle(704, 329, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterl_0.png`),
+                new Obstacle(768, 329, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterm_0.png`),
+                new Obstacle(832, 329, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterr_0.png`),
+                new Obstacle(704, 393, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterl_0.png`),
+                new Obstacle(768, 393, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterm_0.png`),
+                new Obstacle(832, 393, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterr_0.png`),
+
+                new Obstacle(704, 393+135, 64, 64, `${base}/images/tiles/fakewater/spr_fakewatershadowl_0.png`),
+                new Obstacle(768, 393+135, 64, 64, `${base}/images/tiles/fakewater/spr_fakewatershadowm_0.png`),
+                new Obstacle(832, 393+135, 64, 64, `${base}/images/tiles/fakewater/spr_fakewatershadowr_0.png`),
+                new Obstacle(704, 393+199, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterl_0.png`),
+                new Obstacle(768, 393+199, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterm_0.png`),
+                new Obstacle(832, 393+199, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterr_0.png`),
+                new Obstacle(704, 393+263, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterl_0.png`),
+                new Obstacle(768, 393+263, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterm_0.png`),
+                new Obstacle(832, 393+263, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterr_0.png`),
+                new Obstacle(704, 393+263+48, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterl_0.png`),
+                new Obstacle(768, 393+263+48, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterm_0.png`),
+                new Obstacle(832, 393+263+48, 64, 64, `${base}/images/tiles/fakewater/spr_fakewaterr_0.png`),
+
+                new Obstacle(425, 48, 150, 256, `${base}/images/spr_pillar_0.png`),
+                new Obstacle(1036, 48, 150, 256, `${base}/images/spr_pillar_0.png`),
+
+                new Obstacle(160, 400, 92, 110, `${base}/images/spr_dummy_0.png`, 'dummy'),
+            ]);
+
+            game.setInteractionBoxes([
+                new InteractionBox(120, 360, 160, 120, '* It\'s a training dummy. You are not sure why, but it looks threatening.', 'null', 'frog1'),
             ]);
 
             game.setTileMap(roomTileMap); 
@@ -202,6 +239,8 @@
     $: krisSpriteUrl = `${base}/images/kris/spr_kris${direction}_dark(${animationFrame}).png`;
     $: susieSpriteUrl = `${base}/images/susie/spr_susie${susieDirection}_eye_dark(${animationFrame}).png`;
     $: ralseiSpriteUrl = `${base}/images/ralsei/spr_ralsei${ralseiDirection}(${animationFrame}).png`;
+
+    const bridgeeUrl = `${base}/images/tiles/fakewater/bad_bridge.png`;
 </script>
 
 <div class="tile-container">
@@ -231,6 +270,10 @@
 </div>
 <div class="character_ralsei"
     style="background-image: url('{ralseiSpriteUrl}'); --ralseiX: {characterRalsei_X - 35}px; --ralseiY: {characterRalsei_Y - 105}px; z-index: {ralseiZIndex};">
+</div>
+
+<div class="bridge"
+    style="background-image: url('{bridgeeUrl}'); top: 450px; left: 704px; height:80px; width:192px; z-index: 100;">
 </div>
 
 {#each obstacles as obstacle (obstacle.x + '-' + obstacle.y)}
@@ -275,5 +318,12 @@
         background-color: #000000;
         margin: 0;
         overflow: hidden;
+    }
+
+    .bridge {
+        position: absolute;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 </style>

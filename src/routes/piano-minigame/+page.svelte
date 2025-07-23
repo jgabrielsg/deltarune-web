@@ -4,6 +4,8 @@
     import { game, Obstacle, InteractionBox } from '$lib/GameCore.js';
     import { base } from '$app/paths';
 
+    export let data;
+
     // Svelte's reactivity for imported store
     let {
         characterX, characterY, characterSusie_X, characterSusie_Y, characterRalsei_X, characterRalsei_Y,
@@ -86,126 +88,19 @@
     };
 
     // --- MUSIC PLAYER LOGIC ---
-	const songbook = [
-		{
-			name: "Clocks (Intro)",
-			artist: "Coldplay",
-			track: [
-                // first tanananan
-				{ key: 'd', time: 0, duration: 150 },
-				{ key: '[', time: 200, duration: 150 },
-				{ key: 'i', time: 400, duration: 150 },
-				{ key: 'd', time: 600, duration: 150 },
-				{ key: '[', time: 800, duration: 150 },
-				{ key: 'i', time: 1000, duration: 150 },
-				{ key: 'd', time: 1200, duration: 150 },
-				{ key: '[', time: 1400, duration: 150 },
-
-                // second tanananan
-                { key: 'a', time: 0+1600, duration: 150 },
-				{ key: '[', time: 200+1600, duration: 150 },
-				{ key: 'y', time: 400+1600, duration: 150 },
-				{ key: 'a', time: 600+1600, duration: 150 },
-				{ key: '[', time: 800+1600, duration: 150 },
-				{ key: 'y', time: 1000+1600, duration: 150 },
-				{ key: 'a', time: 1200+1600, duration: 150 },
-				{ key: '[', time: 1400+1600, duration: 150 },
-                // second second tanananan
-                { key: 'a', time: 0+3200, duration: 150 },
-				{ key: '[', time: 200+3200, duration: 150 },
-				{ key: 'y', time: 400+3200, duration: 150 },
-				{ key: 'a', time: 600+3200, duration: 150 },
-				{ key: '[', time: 800+3200, duration: 150 },
-				{ key: 'y', time: 1000+3200, duration: 150 },
-                { key: 'a', time: 1200+3200, duration: 150 },
-				{ key: '[', time: 1400+3200, duration: 150 },
-
-                // third tanananan
-                { key: '\\', time: 0+4800, duration: 150 },
-				{ key: 'o', time: 200+4800, duration: 150 },
-				{ key: 'y', time: 400+4800, duration: 150 },
-				{ key: '\\', time: 600+4800, duration: 150 },
-				{ key: 'o', time: 800+4800, duration: 150 },
-				{ key: 'y', time: 1000+4800, duration: 150 },
-                { key: '\\', time: 1200+4800, duration: 150 },
-				{ key: 'o', time: 1400+4800, duration: 150 },
-
-                // first tanananan
-				{ key: 'd', time: 0+6400, duration: 150 },
-				{ key: '[', time: 200+6400, duration: 150 },
-				{ key: 'i', time: 400+6400, duration: 150 },
-				{ key: 'd', time: 600+6400, duration: 150 },
-				{ key: '[', time: 800+6400, duration: 150 },
-				{ key: 'i', time: 1000+6400, duration: 150 },
-				{ key: 'd', time: 1200+6400, duration: 150 },
-				{ key: '[', time: 1400+6400, duration: 150 },
-
-                // second tanananan
-                { key: 'a', time: 0+1600+6400, duration: 150 },
-				{ key: '[', time: 200+1600+6400, duration: 150 },
-				{ key: 'y', time: 400+1600+6400, duration: 150 },
-				{ key: 'a', time: 600+1600+6400, duration: 150 },
-				{ key: '[', time: 800+1600+6400, duration: 150 },
-				{ key: 'y', time: 1000+1600+6400, duration: 150 },
-				{ key: 'a', time: 1200+1600+6400, duration: 150 },
-				{ key: '[', time: 1400+1600+6400, duration: 150 },
-                // second second tanananan
-                { key: 'a', time: 0+3200+6400, duration: 150 },
-				{ key: '[', time: 200+3200+6400, duration: 150 },
-				{ key: 'y', time: 400+3200+6400, duration: 150 },
-				{ key: 'a', time: 600+3200+6400, duration: 150 },
-				{ key: '[', time: 800+3200+6400, duration: 150 },
-				{ key: 'y', time: 1000+3200+6400, duration: 150 },
-                { key: 'a', time: 1200+3200+6400, duration: 150 },
-				{ key: '[', time: 1400+3200+6400, duration: 150 },
-
-                // third tanananan
-                { key: '\\', time: 0+4800+6400, duration: 150 },
-				{ key: 'o', time: 200+4800+6400, duration: 150 },
-				{ key: 'y', time: 400+4800+6400, duration: 150 },
-				{ key: '\\', time: 600+4800+6400, duration: 150 },
-				{ key: 'o', time: 800+4800+6400, duration: 150 },
-				{ key: 'y', time: 1000+4800+6400, duration: 150 },
-                { key: '\\', time: 1200+4800+6400, duration: 150 },
-				{ key: 'o', time: 1400+4800+6400, duration: 150 },
-			]
-		},
-		{
-			name: "Last Time",
-			artist: "Toby Fox (DT)",
-			track: [
-				{ key: 'd', time: 0, duration: 100 },
-				{ key: 'g', time: 50, duration: 200 },
-				{ key: 'g', time: 450, duration: 200 },
-
-                { key: 'd', time: 1000, duration: 100 },
-				{ key: 'g', time: 1050, duration: 200 },
-				{ key: 'g', time: 1500, duration: 200 },
-
-                { key: 'd', time: 1950, duration: 100 },
-				{ key: 'g', time: 2000, duration: 200 },
-				{ key: 'g', time: 2450, duration: 200 },
-
-                { key: 'd', time: 3000, duration: 100 },
-				{ key: 'g', time: 3050, duration: 200 },
-				{ key: 'g', time: 3500, duration: 200 },
-			]
-		}
-	];
-
 	let currentSongIndex = 0;
 	let isPlaying = false;
 	let playbackStartTime = 0;
 	let notesToRender = []; // To render falling notes
-	const FALL_SPEED = 0.25; // pixels per miliseconds
-    const PRE_ROLL_MS = 2000; // cooldown
+	const FALL_SPEED = 0.15; // pixels per miliseconds
+    const PRE_ROLL_MS = 1000; // cooldown
 
 	function startPlayback() {
 		if (isPlaying) return;
 		isPlaying = true;
 		playbackStartTime = performance.now() + PRE_ROLL_MS;
 		// Reset the 'played' state of all notes when starting
-		songbook[currentSongIndex].track.forEach(note => {
+		data.songbook[currentSongIndex].track.forEach(note => {
 			note.played = false;
 			note.released = false;
 		});
@@ -225,7 +120,7 @@
 		}
 
 		const elapsedTime = performance.now() - playbackStartTime;
-		const currentTrack = songbook[currentSongIndex].track;
+		const currentTrack = data.songbook[currentSongIndex].track;
 		
 		// Auto-Play logic
 		currentTrack.forEach(note => {
@@ -293,10 +188,10 @@
 	function handleMusicControls(event) {
 		if (event.key === 'ArrowRight') {
 			stopPlayback();
-			currentSongIndex = (currentSongIndex + 1) % songbook.length;
+			currentSongIndex = (currentSongIndex + 1) % data.songbook.length;
 		} else if (event.key === 'ArrowLeft') {
 			stopPlayback();
-			currentSongIndex = (currentSongIndex - 1 + songbook.length) % songbook.length;
+			currentSongIndex = (currentSongIndex - 1 + data.songbook.length) % data.songbook.length;
 		} else if (event.key === 'Enter') {
 			isPlaying ? stopPlayback() : startPlayback();
 		}
@@ -543,7 +438,7 @@
 
 <div class="container_key">
     <div class="song-hud">
-        <p>◀ { songbook[currentSongIndex].name } ▶</p>
+        <p>◀ { data.songbook[currentSongIndex].name } ▶</p>
         <span>Press Enter to Play/Stop the Song</span>
     </div>
 
