@@ -1,47 +1,5 @@
 import { base } from '$app/paths';
 
-// --- Assets Manifest ---
-const ASSET_MANIFEST = {
-    characters: [
-        { name: 'kris', prefix: 'spr_kris', suffix: '_dark', directions: ['u', 'd', 'l', 'r'], frames: 4 },
-        { name: 'susie', prefix: 'spr_susie', suffix: '_eye_dark', directions: ['u', 'd', 'l', 'r'], frames: 4 },
-        { name: 'ralsei', prefix: 'spr_ralsei', suffix: '', directions: ['u', 'd', 'l', 'r'], frames: 4 },
-        { name: 'frogit', prefix: 'spr_frog_', suffix: '', directions: [''], frames: 4 }
-    ],
-    special: [
-        { name: 'kris_sit', path: 'images/kris/kris_sit', frames: 10 }
-    ],
-    singleImages: [
-        'images/heart.png',
-        'images/spr_classdesk(0).png',
-        'images/spr_dummy_0.png',
-        'images/spr_kris_poster.png',
-        'images/spr_left_arrow.png',
-        'images/spr_music.png',
-        'images/spr_note_poster.png',
-        'images/spr_piano_bench.png',
-        'images/spr_piano.png',
-        'images/spr_pillar_0.png',
-        'images/spr_right_arrow.png',
-        'images/spr_sign.png',
-        'images/text_box.png'
-    ],
-    sounds: [
-        'sounds/A0.mp3', 'sounds/A1.mp3', 'sounds/A2.mp3', 'sounds/A3.mp3', 'sounds/A4.mp3', 'sounds/A5.mp3', 'sounds/A6.mp3', 'sounds/A7.mp3',
-        'sounds/Ab1.mp3', 'sounds/Ab2.mp3', 'sounds/Ab3.mp3', 'sounds/Ab4.mp3', 'sounds/Ab5.mp3', 'sounds/Ab6.mp3', 'sounds/Ab7.mp3',
-        'sounds/B0.mp3', 'sounds/B1.mp3', 'sounds/B2.mp3', 'sounds/B3.mp3', 'sounds/B4.mp3', 'sounds/B5.mp3', 'sounds/B6.mp3', 'sounds/B7.mp3',
-        'sounds/Bb0.mp3', 'sounds/Bb1.mp3', 'sounds/Bb2.mp3', 'sounds/Bb3.mp3', 'sounds/Bb4.mp3', 'sounds/Bb5.mp3', 'sounds/Bb6.mp3', 'sounds/Bb7.mp3',
-        'sounds/C1.mp3', 'sounds/C2.mp3', 'sounds/C3.mp3', 'sounds/C4.mp3', 'sounds/C5.mp3', 'sounds/C6.mp3', 'sounds/C7.mp3', 'sounds/C8.mp3',
-        'sounds/D1.mp3', 'sounds/D2.mp3', 'sounds/D3.mp3', 'sounds/D4.mp3', 'sounds/D5.mp3', 'sounds/D6.mp3', 'sounds/D7.mp3',
-        'sounds/Db1.mp3', 'sounds/Db2.mp3', 'sounds/Db3.mp3', 'sounds/Db4.mp3', 'sounds/Db5.mp3', 'sounds/Db6.mp3', 'sounds/Db7.mp3', 'sounds/Db8.mp3',
-        'sounds/E1.mp3', 'sounds/E2.mp3', 'sounds/E3.mp3', 'sounds/E4.mp3', 'sounds/E5.mp3', 'sounds/E6.mp3', 'sounds/E7.mp3',
-        'sounds/Eb1.mp3', 'sounds/Eb2.mp3', 'sounds/Eb3.mp3', 'sounds/Eb4.mp3', 'sounds/Eb5.mp3', 'sounds/Eb6.mp3', 'sounds/Eb7.mp3',
-        'sounds/F1.mp3', 'sounds/F2.mp3', 'sounds/F3.mp3', 'sounds/F4.mp3', 'sounds/F5.mp3', 'sounds/F6.mp3', 'sounds/F7.mp3',
-        'sounds/G1.mp3', 'sounds/G2.mp3', 'sounds/G3.mp3', 'sounds/G4.mp3', 'sounds/G5.mp3', 'sounds/G6.mp3', 'sounds/G7.mp3',
-        'sounds/Gb1.mp3', 'sounds/Gb2.mp3', 'sounds/Gb3.mp3', 'sounds/Gb4.mp3', 'sounds/Gb5.mp3', 'sounds/Gb6.mp3', 'sounds/Gb7.mp3'
-    ]
-};
-
 // --- Obstacle Class ---
 export class Obstacle {
     constructor(x, y, width, height, sprite = null, id = null) {
