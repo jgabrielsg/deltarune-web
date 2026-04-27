@@ -416,6 +416,7 @@ export const game = {
             currentSpeed *= 0.71;
         }
 
+        
         // Move the player depending on the speed
         if (gameState.pressedKeys.ArrowUp) newY -= currentSpeed;
         if (gameState.pressedKeys.ArrowDown) newY += currentSpeed;
