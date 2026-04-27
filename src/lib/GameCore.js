@@ -202,6 +202,7 @@ const gameState = {
     characterSize: 30,
     speed: 3,
     runSpeed: 6,
+    lastTime: 0,
 
     pressedKeys: {
         ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, Shift: false, Z: false,
@@ -444,8 +445,7 @@ export const game = {
         }
 
         // The speed of the character depends if the player's pressing shift
-        const currentSpeed = gameState.pressedKeys.Shift ? gameState.runSpeed : gameState.speed;
-
+        const currentSpeed = (gameState.pressedKeys.Shift ? gameState.runSpeed : gameState.speed) * deltaTime;
         let newX = gameState.characterX;
         let newY = gameState.characterY;
 
@@ -574,44 +574,53 @@ export const game = {
         ///////////////////
         // Player animation
         ///////////////////
-        gameState.isMoving = gameState.pressedKeys.ArrowUp || gameState.pressedKeys.ArrowDown || gameState.pressedKeys.ArrowLeft || gameState.pressedKeys.ArrowRight;
+        gameState.isMoving = gameState.pressedKeys.ArrowUp || 
+                            gameState.pressedKeys.ArrowDown || 
+                            gameState.pressedKeys.ArrowLeft || 
+                            gameState.pressedKeys.ArrowRight;
 
-        // No movement => first frame, which the player is standing
         if (!gameState.isMoving) {
             gameState.animationFrame = 0;
+            gameState.animationTimer = 0;
             notifySubscribers();
             return;
         }
 
-        // up, down, left, right
+        // Player direction
         if (gameState.pressedKeys.ArrowUp) gameState.direction = 'u';
         else if (gameState.pressedKeys.ArrowDown) gameState.direction = 'd';
         else if (gameState.pressedKeys.ArrowLeft) gameState.direction = 'l';
         else if (gameState.pressedKeys.ArrowRight) gameState.direction = 'r';
+        
+        gameState.animationTimer += deltaTime; 
 
-        // each X ms, change the frame
-        gameState.animationTimer++;
         if (gameState.animationTimer >= gameState.animationSpeed) {
             gameState.animationTimer = 0;
             gameState.animationFrame = (gameState.animationFrame + 1) % 4;
         }
+
         notifySubscribers();
     },
 
     // It's used to go to another room after a bondary hit
-    animate(gotoRoomCallback) {
-        gameState.roomUpdateCallbacks.forEach(callback => callback());
+    animate(timestamp, gotoRoomCallback) {
+        if (!gameState.lastTime) gameState.lastTime = timestamp;
+        let deltaTime = (timestamp - gameState.lastTime) / (1000 / 60);
+
+
+        deltaTime = Math.min(deltaTime, 2.0);
+
+        gameState.lastTime = timestamp;
         
-        game.updateCharacterPosition(gotoRoomCallback);
-        game.updateAnimation();
-        gameState.animationFrameId = requestAnimationFrame(() => game.animate(gotoRoomCallback));
+        game.updateCharacterPosition(deltaTime, gotoRoomCallback);
+        game.updateAnimation(deltaTime);
+
+        gameState.animationFrameId = requestAnimationFrame((t) => game.animate(t, gotoRoomCallback));
     },
 
     startAnimation(gotoRoomCallback) {
-        if (gameState.animationFrameId) {
-            cancelAnimationFrame(gameState.animationFrameId);
-        }
-        gameState.animationFrameId = requestAnimationFrame(() => game.animate(gotoRoomCallback));
+        gameState.lastTime = 0; 
+        gameState.animationFrameId = requestAnimationFrame((t) => game.animate(t, gotoRoomCallback));
     },
 
     cancelAnimation() {
