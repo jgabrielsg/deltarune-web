@@ -1,3 +1,47 @@
+import { base } from '$app/paths';
+
+// --- Assets Manifest ---
+const ASSET_MANIFEST = {
+    characters: [
+        { name: 'kris', prefix: 'spr_kris', suffix: '_dark', directions: ['u', 'd', 'l', 'r'], frames: 4 },
+        { name: 'susie', prefix: 'spr_susie', suffix: '_eye_dark', directions: ['u', 'd', 'l', 'r'], frames: 4 },
+        { name: 'ralsei', prefix: 'spr_ralsei', suffix: '', directions: ['u', 'd', 'l', 'r'], frames: 4 },
+        { name: 'frogit', prefix: 'spr_frog_', suffix: '', directions: [''], frames: 4 }
+    ],
+    special: [
+        { name: 'kris_sit', path: 'images/kris/kris_sit', frames: 10 }
+    ],
+    singleImages: [
+        'images/heart.png',
+        'images/spr_classdesk(0).png',
+        'images/spr_dummy_0.png',
+        'images/spr_kris_poster.png',
+        'images/spr_left_arrow.png',
+        'images/spr_music.png',
+        'images/spr_note_poster.png',
+        'images/spr_piano_bench.png',
+        'images/spr_piano.png',
+        'images/spr_pillar_0.png',
+        'images/spr_right_arrow.png',
+        'images/spr_sign.png',
+        'images/text_box.png'
+    ],
+    sounds: [
+        'sounds/A0.mp3', 'sounds/A1.mp3', 'sounds/A2.mp3', 'sounds/A3.mp3', 'sounds/A4.mp3', 'sounds/A5.mp3', 'sounds/A6.mp3', 'sounds/A7.mp3',
+        'sounds/Ab1.mp3', 'sounds/Ab2.mp3', 'sounds/Ab3.mp3', 'sounds/Ab4.mp3', 'sounds/Ab5.mp3', 'sounds/Ab6.mp3', 'sounds/Ab7.mp3',
+        'sounds/B0.mp3', 'sounds/B1.mp3', 'sounds/B2.mp3', 'sounds/B3.mp3', 'sounds/B4.mp3', 'sounds/B5.mp3', 'sounds/B6.mp3', 'sounds/B7.mp3',
+        'sounds/Bb0.mp3', 'sounds/Bb1.mp3', 'sounds/Bb2.mp3', 'sounds/Bb3.mp3', 'sounds/Bb4.mp3', 'sounds/Bb5.mp3', 'sounds/Bb6.mp3', 'sounds/Bb7.mp3',
+        'sounds/C1.mp3', 'sounds/C2.mp3', 'sounds/C3.mp3', 'sounds/C4.mp3', 'sounds/C5.mp3', 'sounds/C6.mp3', 'sounds/C7.mp3', 'sounds/C8.mp3',
+        'sounds/D1.mp3', 'sounds/D2.mp3', 'sounds/D3.mp3', 'sounds/D4.mp3', 'sounds/D5.mp3', 'sounds/D6.mp3', 'sounds/D7.mp3',
+        'sounds/Db1.mp3', 'sounds/Db2.mp3', 'sounds/Db3.mp3', 'sounds/Db4.mp3', 'sounds/Db5.mp3', 'sounds/Db6.mp3', 'sounds/Db7.mp3', 'sounds/Db8.mp3',
+        'sounds/E1.mp3', 'sounds/E2.mp3', 'sounds/E3.mp3', 'sounds/E4.mp3', 'sounds/E5.mp3', 'sounds/E6.mp3', 'sounds/E7.mp3',
+        'sounds/Eb1.mp3', 'sounds/Eb2.mp3', 'sounds/Eb3.mp3', 'sounds/Eb4.mp3', 'sounds/Eb5.mp3', 'sounds/Eb6.mp3', 'sounds/Eb7.mp3',
+        'sounds/F1.mp3', 'sounds/F2.mp3', 'sounds/F3.mp3', 'sounds/F4.mp3', 'sounds/F5.mp3', 'sounds/F6.mp3', 'sounds/F7.mp3',
+        'sounds/G1.mp3', 'sounds/G2.mp3', 'sounds/G3.mp3', 'sounds/G4.mp3', 'sounds/G5.mp3', 'sounds/G6.mp3', 'sounds/G7.mp3',
+        'sounds/Gb1.mp3', 'sounds/Gb2.mp3', 'sounds/Gb3.mp3', 'sounds/Gb4.mp3', 'sounds/Gb5.mp3', 'sounds/Gb6.mp3', 'sounds/Gb7.mp3'
+    ]
+};
+
 // --- Obstacle Class ---
 export class Obstacle {
     constructor(x, y, width, height, sprite = null, id = null) {
@@ -24,6 +68,123 @@ export class InteractionBox {
         this.targetId = targetId;
     }
 }
+
+const ASSET_MANIFEST = {
+    characters: [
+        { name: 'kris', prefix: 'spr_kris', suffix: '_dark', directions: ['u', 'd', 'l', 'r'], frames: 4 },
+        { name: 'susie', prefix: 'spr_susie', suffix: '_eye_dark', directions: ['u', 'd', 'l', 'r'], frames: 4 },
+        { name: 'ralsei', prefix: 'spr_ralsei', suffix: '', directions: ['u', 'd', 'l', 'r'], frames: 4 },
+        { name: 'frogit', prefix: 'spr_frog_', suffix: '', directions: [''], frames: 4 }
+    ],
+    special: [
+        { name: 'kris_sit', path: 'static/images/kris/kris_sit', frames: 10 }
+    ],
+    tiles: [
+        'static/images/tiles/fakewater/bad_bridge.png',
+        'static/images/tiles/fakewater/spr_fakewaterl_0.png',
+        'static/images/tiles/fakewater/spr_fakewaterl_1.png',
+        'static/images/tiles/fakewater/spr_fakewaterl_2.png',
+        'static/images/tiles/fakewater/spr_fakewaterm_0.png',
+        'static/images/tiles/fakewater/spr_fakewateropenl_0.png',
+        'static/images/tiles/fakewater/spr_fakewateropenl_1.png',
+        'static/images/tiles/fakewater/spr_fakewateropenl_2.png',
+        'static/images/tiles/fakewater/spr_fakewateropenm_0.png',
+        'static/images/tiles/fakewater/spr_fakewateropenm_1.png',
+        'static/images/tiles/fakewater/spr_fakewateropenm_2.png',
+        'static/images/tiles/fakewater/spr_fakewateropenr_0.png',
+        'static/images/tiles/fakewater/spr_fakewateropenr_1.png',
+        'static/images/tiles/fakewater/spr_fakewateropenr_2.png',
+        'static/images/tiles/fakewater/spr_fakewaterr_0.png',
+        'static/images/tiles/fakewater/spr_fakewaterr_1.png',
+        'static/images/tiles/fakewater/spr_fakewaterr_2.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowl_0.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowl_1.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowl_2.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowm_0.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowm_1.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowm_2.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowr_0.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowr_1.png',
+        'static/images/tiles/fakewater/spr_fakewatershadowr_2.png',
+        'static/images/tiles/BLACK.png',
+        'static/images/tiles/gray.png',
+        'static/images/tiles/grayDL.png',
+        'static/images/tiles/grayDR.png',
+        'static/images/tiles/grayTL.png',
+        'static/images/tiles/grayTR.png',
+        'static/images/tiles/ruins2Wall.png',
+        'static/images/tiles/ruins2WallCL.png',
+        'static/images/tiles/ruins2WallCR.png',
+        'static/images/tiles/ruins2WallDC.png',
+        'static/images/tiles/ruins2WallDCL.png',
+        'static/images/tiles/ruins2WallDCR.png',
+        'static/images/tiles/ruins2WallTC.png',
+        'static/images/tiles/ruins2WallTCL.png',
+        'static/images/tiles/ruins2WallTCR.png',
+        'static/images/tiles/ruinsDark.png',
+        'static/images/tiles/ruinsDL.png',
+        'static/images/tiles/ruinsDLDark.png',
+        'static/images/tiles/ruinsDR.png',
+        'static/images/tiles/ruinsDRDark.png',
+        'static/images/tiles/ruinsLight.png',
+        'static/images/tiles/ruinsTL.png',
+        'static/images/tiles/ruinsTLDark.png',
+        'static/images/tiles/ruinsTR.png',
+        'static/images/tiles/ruinsTRDark.png',
+        'static/images/tiles/ruinsWall.png',
+        'static/images/tiles/ruinsWallC_2.png',
+        'static/images/tiles/ruinsWallC.png',
+        'static/images/tiles/ruinsWallD.png',
+        'static/images/tiles/ruinsWallDC_2.png',
+        'static/images/tiles/ruinsWallDC.png',
+        'static/images/tiles/ruinsWallDL.png',
+        'static/images/tiles/ruinsWallDLIn.png',
+        'static/images/tiles/ruinsWallDown.png',
+        'static/images/tiles/ruinsWallDR.png',
+        'static/images/tiles/ruinsWallDRIn.png',
+        'static/images/tiles/ruinsWallL.png',
+        'static/images/tiles/ruinsWallR.png',
+        'static/images/tiles/ruinsWallT.png',
+        'static/images/tiles/ruinsWallTC_2.png',
+        'static/images/tiles/ruinsWallTC.png',
+        'static/images/tiles/ruinsWallTL.png',
+        'static/images/tiles/ruinsWallTLIn.png',
+        'static/images/tiles/ruinsWallTR.png',
+        'static/images/tiles/ruinsWallTRIn.png',
+        'static/images/tiles/suckerL.png',
+        'static/images/tiles/suckerR.png'
+    ],
+    singleImages: [
+        'static/images/heart.png',
+        'static/images/spr_classdesk(0).png',
+        'static/images/spr_dummy_0.png',
+        'static/images/spr_kris_poster.png',
+        'static/images/spr_left_arrow.png',
+        'static/images/spr_music.png',
+        'static/images/spr_note_poster.png',
+        'static/images/spr_piano_bench.png',
+        'static/images/spr_piano.png',
+        'static/images/spr_pillar_0.png',
+        'static/images/spr_right_arrow.png',
+        'static/images/spr_sign.png',
+        'static/images/text_box.png'
+    ],
+    pianoNotes: ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
+    sounds: [
+        'static/sounds/A0.mp3', 'static/sounds/A1.mp3', 'static/sounds/A2.mp3', 'static/sounds/A3.mp3', 'static/sounds/A4.mp3', 'static/sounds/A5.mp3', 'static/sounds/A6.mp3', 'static/sounds/A7.mp3',
+        'static/sounds/Ab1.mp3', 'static/sounds/Ab2.mp3', 'static/sounds/Ab3.mp3', 'static/sounds/Ab4.mp3', 'static/sounds/Ab5.mp3', 'static/sounds/Ab6.mp3', 'static/sounds/Ab7.mp3',
+        'static/sounds/B0.mp3', 'static/sounds/B1.mp3', 'static/sounds/B2.mp3', 'static/sounds/B3.mp3', 'static/sounds/B4.mp3', 'static/sounds/B5.mp3', 'static/sounds/B6.mp3', 'static/sounds/B7.mp3',
+        'static/sounds/Bb0.mp3', 'static/sounds/Bb1.mp3', 'static/sounds/Bb2.mp3', 'static/sounds/Bb3.mp3', 'static/sounds/Bb4.mp3', 'static/sounds/Bb5.mp3', 'static/sounds/Bb6.mp3', 'static/sounds/Bb7.mp3',
+        'static/sounds/C1.mp3', 'static/sounds/C2.mp3', 'static/sounds/C3.mp3', 'static/sounds/C4.mp3', 'static/sounds/C5.mp3', 'static/sounds/C6.mp3', 'static/sounds/C7.mp3', 'static/sounds/C8.mp3',
+        'static/sounds/D1.mp3', 'static/sounds/D2.mp3', 'static/sounds/D3.mp3', 'static/sounds/D4.mp3', 'static/sounds/D5.mp3', 'static/sounds/D6.mp3', 'static/sounds/D7.mp3',
+        'static/sounds/Db1.mp3', 'static/sounds/Db2.mp3', 'static/sounds/Db3.mp3', 'static/sounds/Db4.mp3', 'static/sounds/Db5.mp3', 'static/sounds/Db6.mp3', 'static/sounds/Db7.mp3', 'static/sounds/Db8.mp3',
+        'static/sounds/E1.mp3', 'static/sounds/E2.mp3', 'static/sounds/E3.mp3', 'static/sounds/E4.mp3', 'static/sounds/E5.mp3', 'static/sounds/E6.mp3', 'static/sounds/E7.mp3',
+        'static/sounds/Eb1.mp3', 'static/sounds/Eb2.mp3', 'static/sounds/Eb3.mp3', 'static/sounds/Eb4.mp3', 'static/sounds/Eb5.mp3', 'static/sounds/Eb6.mp3', 'static/sounds/Eb7.mp3',
+        'static/sounds/F1.mp3', 'static/sounds/F2.mp3', 'static/sounds/F3.mp3', 'static/sounds/F4.mp3', 'static/sounds/F5.mp3', 'static/sounds/F6.mp3', 'static/sounds/F7.mp3',
+        'static/sounds/G1.mp3', 'static/sounds/G2.mp3', 'static/sounds/G3.mp3', 'static/sounds/G4.mp3', 'static/sounds/G5.mp3', 'static/sounds/G6.mp3', 'static/sounds/G7.mp3',
+        'static/sounds/Gb1.mp3', 'static/sounds/Gb2.mp3', 'static/sounds/Gb3.mp3', 'static/sounds/Gb4.mp3', 'static/sounds/Gb5.mp3', 'static/sounds/Gb6.mp3', 'static/sounds/Gb7.mp3'
+    ]
+};
 
 // --- Game State and Properties ---
 const gameState = {
@@ -94,6 +255,12 @@ function notifySubscribers() {
     subscribers.forEach(sub => sub(gameState));
 }
 
+// To hold images
+const cache = {
+    images: [],
+    sounds: {}
+};
+
 export const game = {
     // Expose game state properties
     get state() {
@@ -109,6 +276,74 @@ export const game = {
         };
     },
     
+    async preloadAll() {
+        if (gameState.isLoaded) return;
+
+        const totalToLoad = 
+            ASSET_MANIFEST.characters.reduce((acc, char) => acc + (char.directions.length * char.frames), 0) +
+            ASSET_MANIFEST.special.reduce((acc, sp) => acc + sp.frames, 0) +
+            ASSET_MANIFEST.singleImages.length +
+            ASSET_MANIFEST.sounds.length;
+
+        let loadedCount = 0;
+
+        const incrementProgress = () => {
+            loadedCount++;
+            gameState.loadingProgress = Math.round((loadedCount / totalToLoad) * 100);
+            notifySubscribers();
+        };
+
+        // Characters
+        ASSET_MANIFEST.characters.forEach(char => {
+            char.directions.forEach(dir => {
+                for (let i = 0; i < char.frames; i++) {
+                    const img = new Image();
+                    img.src = `${base}/images/${char.name}/${char.prefix}${dir}${char.suffix}(${i}).png`;
+                    img.onload = incrementProgress;
+                    cache.images.push(img);
+                }
+            });
+        });
+
+        // Images (tiles)
+        ASSET_MANIFEST.singleImages.forEach(path => {
+            const img = new Image();
+            const cleanPath = path.replace('static/', '');
+            img.src = `${base}/${cleanPath}`;
+            img.onload = incrementProgress;
+            cache.images.push(img);
+        });
+
+        // Keys and Sounds
+        ASSET_MANIFEST.sounds.forEach(path => {
+            const cleanPath = path.replace('static/', '');
+            const audio = new Audio(`${base}/${cleanPath}`);
+            audio.preload = 'auto';
+            audio.oncanplaythrough = () => {
+                if (!cache.sounds[cleanPath]) {
+                    cache.sounds[cleanPath] = audio;
+                    incrementProgress();
+                }
+            };
+            setTimeout(() => {
+                if (!cache.sounds[cleanPath]) incrementProgress();
+            }, 2000);
+        });
+
+        gameState.isLoaded = true;
+        notifySubscribers();
+        console.log("Assets preloaded successfully!");
+    },
+
+    playSound(path) {
+        const cleanPath = path.replace('static/', '');
+        const sound = cache.sounds[cleanPath];
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play();
+        }
+    },
+
     // Expose functions to modify state
     setWindowDimensions(width, height) {
         gameState.windowWidth = width;
