@@ -402,10 +402,19 @@ export const game = {
         }
 
         // The speed of the character depends if the player's pressing shift
-        const currentSpeed = gameState.pressedKeys.Shift ? gameState.runSpeed : gameState.speed;
-
         let newX = gameState.characterX;
         let newY = gameState.characterY;
+
+        let currentSpeed = gameState.pressedKeys.Shift ? gameState.runSpeed : gameState.speed;
+
+        if (
+            (gameState.pressedKeys.ArrowUp && gameState.pressedKeys.ArrowLeft) ||
+            (gameState.pressedKeys.ArrowUp && gameState.pressedKeys.ArrowRight) ||
+            (gameState.pressedKeys.ArrowDown && gameState.pressedKeys.ArrowRight) ||
+            (gameState.pressedKeys.ArrowDown && gameState.pressedKeys.ArrowLeft)
+        ) {
+            currentSpeed *= 0.71;
+        }
 
         // Move the player depending on the speed
         if (gameState.pressedKeys.ArrowUp) newY -= currentSpeed;
